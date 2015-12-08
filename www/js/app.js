@@ -5,12 +5,7 @@ var app = angular.module('cantantes', ['ionic',
   'angularMoment',
   'parse-angular',
   'parse-angular.enhance',
-  'cantantes.controllers.authentication',
-  'cantantes.controllers.cuenta',
-  'cantantes.services.authentication',
-  'cantantes.controllers.menu',
-  'cantantes.controllers.intro',
-  'cantantes.controllers.home'
+  'cantantes.controllers'
   ])
 
 app.run(function($ionicPlatform) {
@@ -36,13 +31,32 @@ app.config(function ($stateProvider, $urlRouterProvider){
       controller: 'LoginCtrl',
       templateUrl: "templates/login.html"
     })
-     .state('home', {
-      url: "/home",
-      cache: false,
-      controller: 'ListCtrl',
-      templateUrl: "templates/home.html"
-    });
+     .state('app', {
+      url: "/app",
+      cache: true,
+      controller: 'MenuCtrl',
+      templateUrl: "templates/menu.html"
+    })
+      .state('app.search', {
+        url: "/search",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/search.html",
+            controller: 'SearchCtrl'
+          }
+        }
+      })
+      .state('app.show', {
+        url: "/show",
+        cache: false,
+        views: {
+          'menuContent': {
+            templateUrl: "templates/home.html",
+            controller: 'ListCtrl'
+          }
+        }
+      });
 
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/');
 
 });
