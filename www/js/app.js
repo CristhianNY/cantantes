@@ -35,27 +35,28 @@ app.config(function ($stateProvider, $urlRouterProvider){
       url: "/app",
       cache: true,
       controller: 'MenuCtrl',
-      templateUrl: "templates/menu.html"
+      templateUrl: "templates/menu.html",
+
     })
-      .state('app.search', {
-        url: "/search",
-        views: {
-          'menuContent': {
-            templateUrl: "templates/search.html",
-            controller: 'SearchCtrl'
-          }
-        }
-      })
-      .state('app.show', {
-        url: "/show",
-        cache: false,
-        views: {
-          'menuContent': {
-            templateUrl: "templates/home.html",
-            controller: 'ListCtrl'
-          }
-        }
-      });
+      .state('app.home', {
+                url: '/home',
+                views: {
+                    'home': {
+                        templateUrl: 'templates/home.html',
+                        controller : 'MenuCtrl'
+                    }
+                }
+            })
+       .state('app.chat', {
+                url: '/chat',
+                views: {
+                    'home': {
+                        templateUrl: 'templates/tabs/tab-todo.html',
+                        controller : 'MenuCtrl'
+                    }
+                }
+            });
+           
 
   $urlRouterProvider.otherwise('/');
 
