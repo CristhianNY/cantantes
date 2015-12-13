@@ -9088,3 +9088,33 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+.intro {
+  background-color: #fff; }
+  .intro .center-content {
+    display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-direction: column; }
+  .intro .logo {
+    height: 60px;
+    width: 60px;
+    margin-top: -50px;
+    margin-bottom: 50px; }
+  .intro .bar-footer {
+    background-color: #3b5998; }
+    .intro .bar-footer button {
+      margin: 0; }

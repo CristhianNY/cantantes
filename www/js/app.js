@@ -3,10 +3,13 @@ var app = angular.module('cantantes', ['ionic',
   'ngMessages',
   'ngCordova',
   'angularMoment',
-  'parse-angular',
-  'parse-angular.enhance',
-  'cantantes.controllers'
+  'firebase',  
+  'cantantes.controllers',
+  'cantantes.services'
   ])
+    app.constant("FIREBASE_URL", 'https://cookie7.firebaseio.com/');
+    app.constant("FACEBOOK_APP_ID", '927926100622573');
+
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -20,7 +23,10 @@ app.run(function($ionicPlatform) {
     }
   });
 
-
+//Parse.initialize("CcBEaR6AvI8hJYvLkBZKSUXiMbIDCBIa1CB99qbm", "RDoPZsnPUvSMGpP98fHw4DObRoZW4upDEuHQzuHb");
+});
+app.config(function ($stateProvider, $urlRouterProvider, FACEBOOK_APP_ID) {
+  openFB.init({appId: FACEBOOK_APP_ID});
 });
 app.config(function ($stateProvider, $urlRouterProvider){
 
@@ -55,9 +61,18 @@ app.config(function ($stateProvider, $urlRouterProvider){
                         controller : 'MenuCtrl'
                     }
                 }
+            })
+         .state('app.nuevo', {
+                url: '/nuevo',
+                views: {
+                    'home': {
+                        templateUrl: 'templates/tabs/tab-nuevo.html',
+                        controller : 'MenuCtrl'
+                    }
+                }
             });
            
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/login');
 
 });

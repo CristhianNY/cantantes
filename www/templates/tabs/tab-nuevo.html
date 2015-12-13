@@ -1,0 +1,121 @@
+ <ion-view title="app - Chat list">
+
+      <ion-nav-buttons side="left">
+
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+
+      </ion-nav-buttons>
+      <ion-content has-header="true" padding="true">
+	<form name="createForm"
+		      novalidate=""
+		      ng-submit="crearArtista(createForm)"
+		      class="create-form" >
+			<ion-list>
+
+				<!-- Title -->
+		<label class="item item-input">
+          <i class="icon ion-person placeholder-icon"></i>
+          <input ng-model="formData.nombre"  name="nombre"type="text" placeholder="Nombre" autocorrect="off" autocapitalize="off">
+        </label>
+		<label class="item item-input">
+          <i class="icon ion-ios-telephone placeholder-icon"></i>
+          <input ng-model="formData.telefono" type="text" name="telefono" placeholder="Telefono" autocorrect="off" autocapitalize="off">
+        </label>
+		<label class="item item-input">
+          <i class="icon ion-social-whatsapp placeholder-icon"></i>
+          <input ng-model="formData.whatsapp" name="whatsapp"  type="text" placeholder="WhatsApp" autocorrect="off" autocapitalize="off">
+        </label>
+	    <label class="item item-input">
+          <i class="icon ion-ios-email placeholder-icon"></i>
+          <input ng-model="formData.email" name="email" type="text" placeholder="Email" autocorrect="off" autocapitalize="off">
+        </label>
+        		<!-- Category -->
+			
+		<label class="item item-input">
+          <i class="icon ion-link placeholder-icon"></i>
+        <input ng-model="formData.url" placeholder="url" type="text" autocorrect="off" autocapitalize="off">
+        </label>
+			
+      
+				
+
+		
+
+			
+		
+
+			<div class="padding" ng-show="">
+				<div class="picture">
+					<img ng-src=""
+					     alt="" />
+				</div >
+			</div>
+				<label class="item item-input item-select"
+				       ng-class="" >
+					<div class="input-label" >
+
+						Categoria
+					</div >
+					<select name="categoria"
+					       ng-model="formData.categoria"
+					        ng-required="true" >
+						<option selected
+						        value="" >Escoja una opcion
+						</option >
+						<option value="snack" >Pasa bocas</option >
+						<option value="meal" >Agrupaciones</option >
+						<option value="drink" >Solistas</option >
+						<option value="drink" >papayeras</option >
+						<option value="drink" >Mariachis</option >
+						<option value="drink" >Orquestas</option >
+						<option value="drink" >Instrumental</option >
+						<option value="drink" >Vallenatos</option >
+						<option value="drink" >Reggaeton</option >
+					    <option value="drink" >Trovadores</option >
+					    <option value="drink" >Duetos y Trios</option >
+					    <option value="drink" >Coros</option >
+					    <option value="drink" >Imitadores</option >
+
+
+					</select >
+				</label >
+
+
+   <label class="item item-input">
+          <i class="icon ion-document-text placeholder-icon"></i>
+        <textarea ng-model="formData.descripcion" name="descripcion" placeholder="Descripciòn" autocorrect="off" autocapitalize="off"></textarea>
+        </label>
+           <div class="row">
+            <div class="col col-100 text-center">
+                <div class="text-center">
+                    <button class="button icon ion-images" ng-click="openFileDialog()">Imagenes</button>
+                </div>   
+            </div>
+        </div>
+
+			</ion-list >
+        
+			<div class="padding" >
+				<button class="button button-positive button-block"
+				        type="submit" >Crear
+				</button >
+			</div >
+
+
+		</form >
+
+</ion-content>
+
+
+      <div class="tabs tabs-icon-only">
+        <a nav-clear class="tab-item disable-user-behavior" title="Home" nav-clear ui-sref="app.home">
+          <i class="icon ion-music-note"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+        </a>
+        <a nav-clear class="tab-item disable-user-behavior active" title="Chat" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.chat">
+          <i class="icon ion-ribbon-b"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+        </a>
+        <a nav-clear class="tab-item disable-user-behavior" title="Drink" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.drink">
+          <i class="icon ion-plus-circled"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+        </a>
+      </div>
+    </ion-view>

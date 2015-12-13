@@ -1,26 +1,62 @@
- <ion-view title="Second Section">
+ <ion-view title="La Musica que te gusta">
 
       <ion-nav-buttons side="left">
 
         <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
 
       </ion-nav-buttons>
-      <ion-content has-header="true" padding="true">
+      	<ion-nav-buttons side="secondary">
+		<button class="button button-clear"
+		        ng-click="contactar()" >
+			<i class="ion-android-textsms"
+			   ng-class="" ></i >
+		</button >
+	</ion-nav-buttons >
+      <ion-content has-header="true" ng-controller="ListCtrl" padding="true">
 
-        <h3>Second Section's home</h3>
-        <a class="button button-fullwidth" nav-clear ui-sref="root">Back to the Root</a>
+
+    <div class="row" ng-repeat="agrupaciones in agrupaciones.grupos">
+        <div class="col col-25">
+            <img ng-src="{{agrupaciones.img}}" width="100%" />
+        </div>
+        
+        
+    </div>
+
+
+	<!-- Send Message Footer Area 
+	<ion-footer-bar keyboard-attach
+	                class="bar-assertive item-input-inset" >
+		<label class="item-input-wrapper" >
+			<input type="text"
+			       placeholder="Type your message"
+			       ng-enter="sendMessage()"
+			       ng-model="data.message" />
+		</label >
+		<button class="button button-clear"
+		        ng-click="sendMessage()" >
+			Send
+		</button >
+	</ion-footer-bar >-->
+
+</ion-view >
+
 
       </ion-content>
 
-      <div class="tabs tabs-icon-only">
+   
+       <div class="tabs tabs-icon-only">
         <a nav-clear class="tab-item disable-user-behavior active" title="Home" nav-clear ui-sref="app.home">
-          <i class="icon ion-home"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+          <i class="icon ion-music-note"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
         </a>
-        <a nav-clear class="tab-item disable-user-behavior" title="Chat" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.chat">
-          <i class="icon ion-chatbubbles"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+        <a nav-clear class="tab-item disable-user-behavior" title="Artistas gold" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.chat">
+          <i class="icon ion-ribbon-b"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
         </a>
-        <a nav-clear class="tab-item disable-user-behavior" title="Drink" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.drink">
-          <i class="icon ion-wineglass"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+        <a nav-clear class="tab-item disable-user-behavior" title="Agregar" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.nuevo">
+          <i class="icon ion-plus-circled"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
         </a>
       </div>
+
   </ion-view>
+
+    
