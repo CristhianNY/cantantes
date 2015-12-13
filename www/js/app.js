@@ -34,7 +34,7 @@ app.config(function ($stateProvider, $urlRouterProvider){
     .state('login', {
       url: "/login",
       cache: false,
-      controller: 'LoginCtrl',
+      controller: 'loginfb',
       templateUrl: "templates/login.html"
     })
      .state('app', {
