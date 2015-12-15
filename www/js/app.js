@@ -8,7 +8,7 @@ var app = angular.module('cantantes', ['ionic',
   'cantantes.services'
   ])
     app.constant("FIREBASE_URL", 'https://cookie7.firebaseio.com/');
-    app.constant("FACEBOOK_APP_ID", '927926100622573');
+   // app.constant("FACEBOOK_APP_ID", '1511772949116522');
 
 
 app.run(function($ionicPlatform) {
@@ -25,9 +25,7 @@ app.run(function($ionicPlatform) {
 
 //Parse.initialize("CcBEaR6AvI8hJYvLkBZKSUXiMbIDCBIa1CB99qbm", "RDoPZsnPUvSMGpP98fHw4DObRoZW4upDEuHQzuHb");
 });
-app.config(function ($stateProvider, $urlRouterProvider, FACEBOOK_APP_ID) {
-  openFB.init({appId: FACEBOOK_APP_ID});
-});
+
 app.config(function ($stateProvider, $urlRouterProvider){
 
   $stateProvider

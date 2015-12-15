@@ -13,13 +13,8 @@ app.controller('loginfb', function($scope, $state, $q, UserService, $ionicLoadin
     getFacebookProfileInfo(authResponse)
     .then(function(profileInfo) {
       // For the purpose of this example I will store user data on local storage
-      UserService.setUser({
-        authResponse: authResponse,
-				userID: profileInfo.id,
-				name: profileInfo.name,
-				email: profileInfo.email,
-        picture : "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
-      });
+     var imagenPerfil= "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
+      UserService.setUser(profileInfo.id,profileInfo.name,profileInfo.email,imagenPerfil,authResponse.accessToken);
       $ionicLoading.hide();
       $state.go('app.home');
     }, function(fail){
