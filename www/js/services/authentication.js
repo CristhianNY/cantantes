@@ -21,10 +21,7 @@ app.service('UserService', function(FIREBASE_URL,
      
     //var auth = $firebaseAuth(ref);
    // auth.$authWithOAuthToken("facebook", token)(
-   alert(id);
-     alert(nombre);
-   alert(email);
-   alert(imagenPerfil);
+  
    
    
 

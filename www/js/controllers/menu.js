@@ -1,12 +1,29 @@
 var mod = angular.module('cantantes.controllers.menu', []);
 
-mod.controller('MenuCtrl', function($scope,$ionicModal, $state,$ionicActionSheet,$ionicLoading,UserService) {
+mod.controller('MenuCtrl', function($scope,
+									$ionicModal, 
+									$state,
+									$ionicActionSheet,
+									$ionicLoading,
+									UserService,
+									Creador,
+									FIREBASE_URL,
+									Artistas,
+									$firebaseArray,
+									 $cordovaCamera) {
 
 	 $ionicModal.fromTemplateUrl('templates/contacto.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
   });
+
+  	$scope.show = {};
+    $scope.contador = 0;
+	$scope.images = [];
+	$scope.artistas = Artistas;
+	$scope.estado = 0;
+	var messagesRef = new Firebase(FIREBASE_URL);
 
 	$scope.logout = function () {
 		UserService.logoutUser();
@@ -29,19 +46,90 @@ mod.controller('MenuCtrl', function($scope,$ionicModal, $state,$ionicActionSheet
 	$scope.resetFormData();
 	$scope.crearArtista = function(form){
 	
-			console.log("MenuCtrl");
-			$ionicLoading.show();
+			//console.log("MenuCtrl");
+			//$ionicLoading.show();
 	
-			Creador.crear($scope.formData).then(function(){
+			/*Creador.crear($scope.formData).then(function(){
 				$scope.resetFormData();
 				$ionicLoading.hide();
 				form.$setPristine(true);
 				$state.go("app.home");
-			});
+			});**/
+
+if($scope.images.length >0){
+	 $scope.artistas.$add({
+        "nombreArtista": $scope.formData.nombre,
+        "telefono":$scope.formData.telefono,
+        "whatsapp":$scope.formData.whatsapp,
+        "email":$scope.formData.email,
+        "url":$scope.formData.url,
+        "video":$scope.formData.video,
+        "categoria":$scope.formData.categoria,
+        "descripcion":$scope.formData.descripcion,	
+        "images":$scope.images,
+        "estado": $scope.estado
+
+
+
+      });
+	 $state.go('home');
+}else{
+
+	alert("por favor seleccione una foto");
+}
+	
 		
 	}
+	$scope.addImage = function (){
+		$scope.contador = $scope.contador+1;
+
+		var options = {
+            quality : 75,
+            destinationType : Camera.DestinationType.DATA_URL,
+            sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
+            allowEdit : true,
+            encodingType: Camera.EncodingType.JPEG,
+            popoverOptions: CameraPopoverOptions,
+            targetWidth: 500,
+            targetHeight: 500,
+            saveToPhotoAlbum: false
+        };
+
+        	$cordovaCamera.getPicture(options).then(function(imageData){
+			//$scope.formData.picture = imageData;
+			if($scope.images.length <=3 ){
+				$scope.images.push(imageData);
+			}else{
+				$ionicPopup.alert({
+				title:'Solo se permiten 4 fotos',
+				subTitle:''
+			});
+			}
+			
+
+
+		},function (err){
+			console.error(err);
+			$ionicPopup.alert({
+				title:'error al tomar la foto',
+				subTitle:'estamos teniendo problemas para entender esto'
+			});
+		});
+
+	}
+
 
 	$scope.user = UserService.getUser();
+
+	$scope.quitarFoto = function(img){
+	var index = $scope.images.indexOf(img);
+	    if (index > -1){
+	    	$scope.images.splice(index, 1);
+	    }
+
+  $scope.contador = $scope.images.length;
+
+	}
 
 	$scope.showLogOutMenu = function() {
 		var hideSheet = $ionicActionSheet.show({

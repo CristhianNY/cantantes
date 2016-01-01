@@ -33,7 +33,11 @@
 			
 		<label class="item item-input">
           <i class="icon ion-link placeholder-icon"></i>
-        <input ng-model="formData.url" placeholder="url" type="text" autocorrect="off" autocapitalize="off">
+        <input ng-model="formData.url" name="url" placeholder="url" type="text" autocorrect="off" autocapitalize="off">
+        </label>
+        <label class="item item-input">
+          <i class="icon ion-link placeholder-icon"></i>
+        <input ng-model="formData.video" name="video"placeholder="url de video de youtube" type="text" autocorrect="off" autocapitalize="off">
         </label>
 			
       
@@ -81,17 +85,38 @@
 				</label >
 
 
+			<!-- <div class="row" ng-show="formData.picture">
+				  <div class="col col-25">
+					<img ng-src="data:image/jpeg;base64,{{formData.picture}}" width="100%"
+					     alt="" />
+				</div >
+			</div>-->
+			
+
    <label class="item item-input">
           <i class="icon ion-document-text placeholder-icon"></i>
         <textarea ng-model="formData.descripcion" name="descripcion" placeholder="Descripciòn" autocorrect="off" autocapitalize="off"></textarea>
         </label>
+        	<div ng-show="images" >
+			 <div class="row responsive-md" >
+				  <div class="col col-50"ng-repeat="img in images">
+				  	<a class="button button-assertive" ng-click="quitarFoto(img)">
+				  <i class="icon ion-close-circled"></i> 
+					</a>
+					<img ng-src="data:image/jpeg;base64,{{img}}" width="100%"
+					     alt="" />	
+				</div >
+			</div>
+		</div>
            <div class="row">
             <div class="col col-100 text-center">
-                <div class="text-center">
-                    <button class="button icon ion-images" ng-click="openFileDialog()">Imagenes</button>
+                <div class="text-center" ng-if="contador <=3">
+                    <a class="button icon ion-images" ng-click="addImage()">
+                    	Imagenes</a>
                 </div>   
             </div>
         </div>
+      
 
 			</ion-list >
         
@@ -100,6 +125,7 @@
 				        type="submit" >Crear
 				</button >
 			</div >
+		 
 
 
 		</form >

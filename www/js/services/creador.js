@@ -1,6 +1,14 @@
 var app = angular.module('cantantes.services.creador', []);
 
-app.service("Creador", function ($q,$ionicPopup ) {
+app.service("Creador", function (    $stateParams,
+									 $q,
+									 $firebaseArray,
+									 $ionicScrollDelegate,
+									 FIREBASE_URL,
+                                     UserService
+								) {
+
+	
 	var self = {
 		'page': 0,
 		'page_size': 20,
@@ -50,48 +58,36 @@ app.service("Creador", function ($q,$ionicPopup ) {
 			return d.promise;
 		},
 		'crear': function (data) {
+				var datos = {
+		Artistas: [],
+		Artista: '',
+		loading: true,
+		showInfo: false
+	};
 			self.isSaving = true;
 			var d = $q.defer();
+			alert(datos.Artista)
+			if(datos.Artista){
+			datos.artistas.$add({
+				showId : "true",
+				text : "alguna vaina",
+				username: "algun texto username",
+				userId: "id",
+				profilePic :"foto",
+				timestamp : new Date().getTime()
 
-		//var Grupo = Parse.Object.extend("Grupo");
-		//var user = AuthService.user;
-		//var file = data.picture ? new Parse.File("photo.jpg",{base64:data.picture}) : null;
-		//var	grupo = new Grupo();
-	//	meal.set("owner",user);
-		//meal.set("picture",file);
-		//alert(data.nombre);
-		//alert(data.telefono);
-		//alert(data.whatsapp);
-		//alert(data.email);
-		//alert(data.url);
-		//alert(data.categoria);
-		//alert(data.descripcion);
-		//grupo.set("nombre",data.nombre);
-		//grupo.set("telefono",data.telefono);
-		//grupo.set("whatsapp",data.whatsapp);
-		//grupo.set("email",data.email);
-		//grupo.set("url",data.url);
-		//grupo.set("categoria",data.categoria);
-		//grupo.set("descripcion",data.descripcion);
-		//grupo.set("created",new Date());
+			});
+		    datos.artista = '';
+			$ionicScrollDelegate.$getByHandle('showpage').scrollBottom(true);
+		}else{
 
-		grupo.save(null,{
+			alert("aeeerro");
+		}
 
-			success:function (grupo){
-				console.log("Grupo creado");
-				self.results.unshift(grupo);
-				d.resolve(grupo);
 
-			},error : function(item, error){
-				$ionicPopup.alert(
-				{
-					title:"Error saving ",
-					subtitle:error.message
-				});
-				d.reject(error);
+	
 
-			}
-		});
+		
 			return d.promise;
 		}
 
