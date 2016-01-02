@@ -9118,3 +9118,16 @@ a.button {
     background-color: #3b5998; }
     .intro .bar-footer button {
       margin: 0; }
+
+form.ng-submitted label.has-error {
+  border-bottom: 2px solid #ef473a; }
+
+form.ng-submitted .form-errors {
+  display: block; }
+  form.ng-submitted .form-errors .form-error {
+    padding: 10px 10px;
+    text-align: center;
+    color: #ef473a; }
+
+form .form-errors {
+  display: none; }

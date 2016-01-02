@@ -56,6 +56,7 @@ mod.controller('MenuCtrl', function($scope,
 				$state.go("app.home");
 			});**/
 
+if(form.$valid){
 if($scope.images.length >0){
 	 $scope.artistas.$add({
         "nombreArtista": $scope.formData.nombre,
@@ -77,6 +78,13 @@ if($scope.images.length >0){
 
 	alert("por favor seleccione una foto");
 }
+
+}else{
+
+	alert("formulario invalido");
+}
+
+
 	
 		
 	}

@@ -7,53 +7,79 @@
       </ion-nav-buttons>
       <ion-content has-header="true" padding="true">
 	<form name="createForm"
-		      novalidate=""
+		      novalidate="novalidate"
 		      ng-submit="crearArtista(createForm)"
 		      class="create-form" >
 			<ion-list>
 
 				<!-- Title -->
-		<label class="item item-input">
+		<label class="item item-input" ng-class="{'has-error':createForm.nombre.$invalid}">
           <i class="icon ion-person placeholder-icon"></i>
-          <input ng-model="formData.nombre"  name="nombre"type="text" placeholder="Nombre" autocorrect="off" autocapitalize="off">
+          <input ng-model="formData.nombre"  name="nombre"type="text" placeholder="Nombre" autocorrect="off" autocapitalize="off" ng-required="true" >
         </label>
-		<label class="item item-input">
+        	  <div class="form-errors"
+				     ng-messages="createForm.nombre.$error">
+				    <div ng-messages-include="templates/form-errors.html" ></div>
+				</div >
+		<label class="item item-input" ng-class="{'has-error':createForm.telefono.$invalid}">
           <i class="icon ion-ios-telephone placeholder-icon"></i>
-          <input ng-model="formData.telefono" type="text" name="telefono" placeholder="Telefono" autocorrect="off" autocapitalize="off">
+          <input ng-model="formData.telefono" type="tel" name="telefono" placeholder="Telefono" autocorrect="off" autocapitalize="off" ng-required="true">
         </label>
-		<label class="item item-input">
+            <div class="form-errors"
+				     ng-messages="createForm.telefono.$error">
+				    <div ng-messages-include="templates/form-errors.html" ></div>
+				</div >
+
+		<label class="item item-input"ng-class="{'has-error':createForm.whatsapp.$invalid}">
           <i class="icon ion-social-whatsapp placeholder-icon"></i>
-          <input ng-model="formData.whatsapp" name="whatsapp"  type="text" placeholder="WhatsApp" autocorrect="off" autocapitalize="off">
+          <input ng-model="formData.whatsapp" name="whatsapp"  type="tel" placeholder="WhatsApp" autocorrect="off" autocapitalize="off" ng-required="true">
         </label>
-	    <label class="item item-input">
+          <div class="form-errors"
+				     ng-messages="createForm.whatsapp.$error">
+				    <div ng-messages-include="templates/form-errors.html" ></div>
+				</div >
+
+	    <label class="item item-input"ng-class="{'has-error':createForm.email.$invalid}">
           <i class="icon ion-ios-email placeholder-icon"></i>
-          <input ng-model="formData.email" name="email" type="text" placeholder="Email" autocorrect="off" autocapitalize="off">
+          <input ng-model="formData.email"  name="email" type="email" placeholder="Email" autocorrect="off" autocapitalize="off" ng-required="true">
         </label>
+
+          <div class="form-errors"
+				     ng-messages="createForm.email.$error">
+				    <div ng-messages-include="templates/form-errors.html" ></div>
+				</div >
         		<!-- Category -->
 			
-		<label class="item item-input">
+		<label class="item item-input"ng-class="{'has-error':createForm.url.$invalid}">
           <i class="icon ion-link placeholder-icon"></i>
-        <input ng-model="formData.url" name="url" placeholder="url" type="text" autocorrect="off" autocapitalize="off">
+        <input ng-model="formData.url" name="url" placeholder="url" type="text" autocorrect="off" autocapitalize="off"ng-required="true">
+
         </label>
-        <label class="item item-input">
+          <div class="form-errors"
+				     ng-messages="createForm.url.$error">
+				    <div ng-messages-include="templates/form-errors.html" ></div>
+				</div >
+
+        <label class="item item-input"ng-class="{'has-error':createForm.video.$invalid}">
           <i class="icon ion-link placeholder-icon"></i>
-        <input ng-model="formData.video" name="video"placeholder="url de video de youtube" type="text" autocorrect="off" autocapitalize="off">
+        <input ng-model="formData.video" name="video"placeholder="url de video de youtube" type="text" autocorrect="off" autocapitalize="off"ng-required="true">
         </label>
-			
-      
-				
 
+			<iframe width="100%" height="315" src="https://www.youtube.com/watch?v=R7vmHGAshi8" frameborder="0" allowfullscreen></iframe>
+	
+
+  <div class="form-errors"
+				     ng-messages="createForm.video.$error">
+				    <div ng-messages-include="templates/form-errors.html" ></div>
+				</div >
 		
-
-			
-		
-
 			<div class="padding" ng-show="">
 				<div class="picture">
 					<img ng-src=""
 					     alt="" />
 				</div >
 			</div>
+
 				<label class="item item-input item-select"
 				       ng-class="" >
 					<div class="input-label" >
@@ -63,7 +89,7 @@
 					<select name="categoria"
 					       ng-model="formData.categoria"
 					        ng-required="true" >
-						<option selected
+						<option selected ng-required="true"
 						        value="" >Escoja una opcion
 						</option >
 						<option value="snack" >Pasa bocas</option >
@@ -83,24 +109,23 @@
 
 					</select >
 				</label >
-
-
-			<!-- <div class="row" ng-show="formData.picture">
-				  <div class="col col-25">
-					<img ng-src="data:image/jpeg;base64,{{formData.picture}}" width="100%"
-					     alt="" />
+				  <div class="form-errors"
+				     ng-messages="createForm.categoria.$error">
+				    <div ng-messages-include="templates/form-errors.html" ></div>
 				</div >
-			</div>-->
-			
+  			 <label class="item item-input" ng-class="{'has-error':createForm.whatsapp.$invalid}">
+         		 <i class="icon ion-document-text placeholder-icon"></i>
+       			 <textarea ng-model="formData.descripcion" name="descripcion" placeholder="Descripciòn" autocorrect="off" autocapitalize="off"ng-required="true"></textarea>
+             </label>
+               <div class="form-errors"
+				     ng-messages="createForm.descripcion.$error">
+				    <div ng-messages-include="templates/form-errors.html" ></div>
+				</div >
 
-   <label class="item item-input">
-          <i class="icon ion-document-text placeholder-icon"></i>
-        <textarea ng-model="formData.descripcion" name="descripcion" placeholder="Descripciòn" autocorrect="off" autocapitalize="off"></textarea>
-        </label>
         	<div ng-show="images" >
 			 <div class="row responsive-md" >
 				  <div class="col col-50"ng-repeat="img in images">
-				  	<a class="button button-assertive" ng-click="quitarFoto(img)">
+				  	<a class="botonclose" ng-click="quitarFoto(img)">
 				  <i class="icon ion-close-circled"></i> 
 					</a>
 					<img ng-src="data:image/jpeg;base64,{{img}}" width="100%"
@@ -108,6 +133,7 @@
 				</div >
 			</div>
 		</div>
+
            <div class="row">
             <div class="col col-100 text-center">
                 <div class="text-center" ng-if="contador <=3">
@@ -117,20 +143,19 @@
             </div>
         </div>
       
-
-			</ion-list >
-        
-			<div class="padding" >
+<div class="padding" >
 				<button class="button button-positive button-block"
 				        type="submit" >Crear
 				</button >
-			</div >
+			</div >			</ion-list >
+        
+			
 		 
 
 
 		</form >
 
-</ion-content>
+ 		</ion-content>
 
 
       <div class="tabs tabs-icon-only">
