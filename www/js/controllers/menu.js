@@ -10,12 +10,19 @@ mod.controller('MenuCtrl', function($scope,
 									FIREBASE_URL,
 									Artistas,
 									$firebaseArray,
-									 $cordovaCamera) {
+									$cordovaCamera,
+									$ionicSlideBoxDelegate) {
+
 
 	 $ionicModal.fromTemplateUrl('templates/contacto.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
+  });
+  $ionicModal.fromTemplateUrl('templates/youtube.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal1 = modal;
   });
 
   	$scope.show = {};
@@ -31,6 +38,12 @@ mod.controller('MenuCtrl', function($scope,
 	};
 		$scope.contactar = function () {
 		 $scope.modal.show();
+	};
+		$scope.youtube = function () {
+		 $scope.modal1.show();
+	};
+		$scope.closeYoutube = function () {
+		 $scope.modal1.hide();
 	};
 		$scope.closeContactar = function () {
 		 $scope.modal.hide();
@@ -68,7 +81,8 @@ if($scope.images.length >0){
         "categoria":$scope.formData.categoria,
         "descripcion":$scope.formData.descripcion,	
         "images":$scope.images,
-        "estado": $scope.estado
+        "estado": $scope.estado,
+        "idUser" : $scope.user
 
 
 
@@ -86,6 +100,17 @@ if($scope.images.length >0){
 
 
 	
+		
+	}
+
+	$scope.idYouTube = function(url){
+
+ 			var regex = new RegExp(/(?:\?v=)([^&]+)(?:\&)*/);
+
+		    var id = regex.exec(url);
+		 
+
+		$scope.idYou="https://www.youtube.com/embed/"+id[1];
 		
 	}
 	$scope.addImage = function (){
@@ -128,6 +153,7 @@ if($scope.images.length >0){
 
 
 	$scope.user = UserService.getUser();
+	
 
 	$scope.quitarFoto = function(img){
 	var index = $scope.images.indexOf(img);

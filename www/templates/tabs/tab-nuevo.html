@@ -1,4 +1,4 @@
- <ion-view title="app - Chat list">
+ <ion-view title="Crear Publicidad">
 
       <ion-nav-buttons side="left">
 
@@ -17,6 +17,7 @@
           <i class="icon ion-person placeholder-icon"></i>
           <input ng-model="formData.nombre"  name="nombre"type="text" placeholder="Nombre" autocorrect="off" autocapitalize="off" ng-required="true" >
         </label>
+      
         	  <div class="form-errors"
 				     ng-messages="createForm.nombre.$error">
 				    <div ng-messages-include="templates/form-errors.html" ></div>
@@ -62,12 +63,15 @@
 
         <label class="item item-input"ng-class="{'has-error':createForm.video.$invalid}">
           <i class="icon ion-link placeholder-icon"></i>
-        <input ng-model="formData.video" name="video"placeholder="url de video de youtube" type="text" autocorrect="off" autocapitalize="off"ng-required="true">
+        <input ng-model="formData.video"  ng-change="idYouTube(formData.video)"name="video"placeholder="url de video de youtube" type="text" autocorrect="off" autocapitalize="off"ng-required="true">
         </label>
+        
+     
+     		<div ng-show="idYou">
 
-			<iframe width="100%" height="315" src="https://www.youtube.com/watch?v=R7vmHGAshi8" frameborder="0" allowfullscreen></iframe>
+			<iframe width="100%" height="315" src="{{idYou | trustAsResourceUrl}}" frameborder="0" allowfullscreen></iframe>
 	
-
+</div>
   <div class="form-errors"
 				     ng-messages="createForm.video.$error">
 				    <div ng-messages-include="templates/form-errors.html" ></div>
@@ -126,7 +130,7 @@
 			 <div class="row responsive-md" >
 				  <div class="col col-50"ng-repeat="img in images">
 				  	<a class="botonclose" ng-click="quitarFoto(img)">
-				  <i class="icon ion-close-circled"></i> 
+				  <i class="icon ion-close-circled" style="float:right	"></i> 
 					</a>
 					<img ng-src="data:image/jpeg;base64,{{img}}" width="100%"
 					     alt="" />	
