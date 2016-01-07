@@ -8,9 +8,9 @@
       <ion-content has-header="true" padding="true">
 <div class="list card">
 
-  <div class="item item-avatar">
+  <div class="item item-avatar" ng-repeat="art in artista">
     <img src="mcfly.jpg">
-    <h2>Marty McFly</h2>
+    <h2>{{art.nombreArtista}}</h2>
     <p>November 05, 1955</p>
   </div>
 

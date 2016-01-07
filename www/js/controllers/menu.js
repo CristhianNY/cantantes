@@ -6,7 +6,7 @@ mod.controller('MenuCtrl', function($scope,
 									$ionicActionSheet,
 									$ionicLoading,
 									UserService,
-									Creador,
+									db,
 									FIREBASE_URL,
 									Artistas,
 									$firebaseArray,
@@ -24,7 +24,7 @@ mod.controller('MenuCtrl', function($scope,
   }).then(function(modal) {
     $scope.modal1 = modal;
   });
-
+	$scope.artista= db.list(); 
   	$scope.show = {};
     $scope.contador = 0;
 	$scope.images = [];
@@ -87,7 +87,7 @@ if($scope.images.length >0){
 
 
       });
-	 $state.go('home');
+	 $state.go('app.mostrar');
 }else{
 
 	alert("por favor seleccione una foto");
@@ -102,6 +102,10 @@ if($scope.images.length >0){
 	
 		
 	}
+
+
+
+
 
 	$scope.idYouTube = function(url){
 

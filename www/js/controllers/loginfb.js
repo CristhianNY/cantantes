@@ -16,7 +16,7 @@ app.controller('loginfb', function($scope, $state, $q, UserService, $ionicLoadin
      var imagenPerfil= "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
       UserService.setUser(profileInfo.id,profileInfo.name,profileInfo.email,imagenPerfil,authResponse.accessToken);
       $ionicLoading.hide();
-      $state.go('app.home');
+   $state.go('app.mostrar');
     }, function(fail){
       // Fail get profile info
       console.log('profile info fail', fail);

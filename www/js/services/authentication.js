@@ -23,7 +23,7 @@ app.service('UserService', function(FIREBASE_URL,
    // auth.$authWithOAuthToken("facebook", token)(
   
    
-   alert(id);
+  // alert(id);
 window.localStorage.starter_facebook_user = JSON.stringify(id);
 
 var auth = $firebaseAuth(ref);
