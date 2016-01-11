@@ -1,0 +1,77 @@
+ <ion-view title="Crear Publicidad">
+
+      <ion-nav-buttons side="left">
+
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+
+      </ion-nav-buttons>
+        <ion-nav-buttons side="secondary">
+    <button class="button button-clear"
+            ng-click="contactar()" >
+      <i class="ion-android-textsms"
+         ng-class="" ></i >
+    </button >
+  </ion-nav-buttons >
+      <ion-content has-header="true" padding="true">
+
+<div class="list card">
+
+   <div class="card" ng-repeat="arts in arti">
+    {{arti[$index].nombreArtista}} nada señores
+
+  <div class="item item-body">
+    <div class="item item-divider">
+
+      <ion-list>
+ 
+   {{arts.nombreArtista}} si o que?
+ {{arts.$id}}
+  
+
+  </div>
+  <div>
+
+      <ion-slide-box auto-play="false" show-pager="false" >
+ <ion-slide ng-repeat="img in arti[$index].images"> <img ng-click="contacto(art.$id)"class="full-image" ng-src="data:image/jpeg;base64,{{img}}" width="100%" /></ion-slide>
+ </ion-slide-box>
+</div>
+  
+     <p>
+      <a href="#" class="subdued">1 Like</a>
+      <a href="#" class="subdued">5 Comments</a>
+    </p>
+      <div class="item tabs tabs-secondary tabs-icon-left">
+    <a class="tab-item" href="#">
+      <i class="icon ion-thumbsup"></i>
+      Like
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-chatbox"></i>
+      Comment
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-share"></i>
+      Share
+    </a>
+  </div>
+  </div>
+
+</div>
+
+</div>
+
+    </ion-content>
+
+
+    <div class="tabs tabs-icon-only">
+        <a nav-clear class="tab-item disable-user-behavior active" title="Home" nav-clear ui-sref="app.home">
+          <i class="icon ion-music-note"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+        </a>
+        <a nav-clear class="tab-item disable-user-behavior" title="Artistas gold" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.chat">
+          <i class="icon ion-ribbon-b"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+        </a>
+        <a nav-clear class="tab-item disable-user-behavior" title="Agregar" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.nuevo">
+          <i class="icon ion-plus-circled"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+        </a>
+      </div>
+    </ion-view>

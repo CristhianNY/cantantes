@@ -71,13 +71,23 @@ app.config(function ($stateProvider, $urlRouterProvider){
                     }
                 }
             })
+          .state('app.mostrarbyid', {
+           cache: true,
+                url: '/mostrarbyid',
+                views: {
+                    'home': {
+                        templateUrl: 'templates/mostrarbyid.html',
+                        controller : 'Show'
+                    }
+                }
+            })
          .state('app.mostrar', {
            cache: true,
                 url: '/mostrar',
                 views: {
                     'home': {
                         templateUrl: 'templates/mostrar.html',
-                        controller : 'MenuCtrl'
+                        controller : 'Show'
                     }
                 }
             });

@@ -19,14 +19,25 @@ app.factory('db', function($q,
 			
  		//alert($firebaseArray(itemsRef));
 	
-	
+	console.log($firebaseArray(artistasRef));
 		  return $firebaseArray(artistasRef);	
 
 
 		},
 		findArtista:function(id){
 
-			return artistasRef.$child(id);
+			/*var query = new Firebase('https://cookie7.firebaseio.com/artistas/'+id).once('value', function(snap) {
+  			console.log('datposs', snap.val());
+  			})
+			var resultado = JSON.stringify(query);
+			return $firebaseArray(resultado);*/
+			
+				var itemsRef = new Firebase("https://cookie7.firebaseio.com/artistas");
+
+				var query = itemsRef.orderByChild("idUser").equalTo(id);
+
+				console.log($firebaseArray(query));
+			return $firebaseArray(query);
 		},
 
 		saveArtista:function(artista){

@@ -9,10 +9,10 @@ mod.controller('MenuCtrl', function($scope,
 									db,
 									FIREBASE_URL,
 									Artistas,
+									Img,
 									$firebaseArray,
 									$cordovaCamera,
 									$ionicSlideBoxDelegate) {
-
 
 	 $ionicModal.fromTemplateUrl('templates/contacto.html', {
     scope: $scope
@@ -29,6 +29,7 @@ mod.controller('MenuCtrl', function($scope,
     $scope.contador = 0;
 	$scope.images = [];
 	$scope.artistas = Artistas;
+	$scope.imagenes = Img;
 	$scope.estado = 0;
 	var messagesRef = new Firebase(FIREBASE_URL);
 
@@ -57,20 +58,22 @@ mod.controller('MenuCtrl', function($scope,
 		};
 	};
 	$scope.resetFormData();
-	$scope.crearArtista = function(form){
 	
-			//console.log("MenuCtrl");
-			//$ionicLoading.show();
-	
-			/*Creador.crear($scope.formData).then(function(){
-				$scope.resetFormData();
-				$ionicLoading.hide();
-				form.$setPristine(true);
-				$state.go("app.home");
-			});**/
 
-if(form.$valid){
-if($scope.images.length >0){
+
+		$scope.verporId = function(){
+		/*$scope.artistas.startAt(id).endAt(id).once('value',function(snap){
+			alert(snap.val())
+		});*/
+
+alert("carajo");
+	}
+
+	$scope.crearArtista = function(form){
+		if(form.$valid){
+		if($scope.images.length >0){
+			var tamaño =  $scope.artistas.length;
+			var id  = tamaño +1;
 	 $scope.artistas.$add({
         "nombreArtista": $scope.formData.nombre,
         "telefono":$scope.formData.telefono,
@@ -82,31 +85,21 @@ if($scope.images.length >0){
         "descripcion":$scope.formData.descripcion,	
         "images":$scope.images,
         "estado": $scope.estado,
-        "idUser" : $scope.user
-
-
-
+        "idUser" : $scope.user,
+        "id":id
+      }).then(function(){
+      	
+		$state.go('app.mostrar');
       });
-	 $state.go('app.mostrar');
-}else{
+	 
+	 }else{
 
 	alert("por favor seleccione una foto");
-}
-
+		}
 }else{
-
 	alert("formulario invalido");
 }
-
-
-	
-		
 	}
-
-
-
-
-
 	$scope.idYouTube = function(url){
 
  			var regex = new RegExp(/(?:\?v=)([^&]+)(?:\&)*/);
@@ -142,9 +135,6 @@ if($scope.images.length >0){
 				subTitle:''
 			});
 			}
-			
-
-
 		},function (err){
 			console.error(err);
 			$ionicPopup.alert({
@@ -152,14 +142,11 @@ if($scope.images.length >0){
 				subTitle:'estamos teniendo problemas para entender esto'
 			});
 		});
-
 	}
 
 
 	$scope.user = UserService.getUser();
-	
-
-	$scope.quitarFoto = function(img){
+ 	$scope.quitarFoto = function(img){
 	var index = $scope.images.indexOf(img);
 	    if (index > -1){
 	    	$scope.images.splice(index, 1);

@@ -3,4 +3,9 @@ app.factory("Artistas", function($firebaseArray,FIREBASE_URL) {
   var artistasRef = new Firebase(FIREBASE_URL+"/artistas");
  
   return $firebaseArray(artistasRef);
+});
+app.factory("Img", function($firebaseArray,FIREBASE_URL) {
+  var artistasRef = new Firebase(FIREBASE_URL+"/imagenes");
+ 
+  return $firebaseArray(artistasRef);
 })
