@@ -34,7 +34,6 @@ mod.controller('MenuCtrl', function($scope,
     $scope.contador = 0;
 	$scope.images = [];
 	$scope.artistas = Artistas;
-	$scope.coments = db.getComentarios();
 	$scope.imagenes = Img;
 	$scope.estado = 0;
 	var messagesRef = new Firebase(FIREBASE_URL);
@@ -56,9 +55,10 @@ mod.controller('MenuCtrl', function($scope,
 		$scope.closeContactar = function () {
 		 $scope.modal.hide();
 	};
-	$scope.comentarios = function(){
-
-			 $scope.modal2.show();
+	$scope.comentarios = function(id){
+			$scope.idArtista = id;
+			$scope.coments = db.getComentarios($scope.idArtista);
+			 $scope.modal2.show(id);
 	}
 	$scope.closeComentarios = function(){
 
@@ -90,8 +90,7 @@ mod.controller('MenuCtrl', function($scope,
         "descripcion":$scope.formData.descripcion,	
         "images":$scope.images,
         "estado": $scope.estado,
-        "idUser" : $scope.user,
-        "id":id,
+        "idUser" : $scope.user,        
         "like": like
       }).then(function(){
       	

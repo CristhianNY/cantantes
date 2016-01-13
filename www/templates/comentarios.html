@@ -1,6 +1,6 @@
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title">Comentarios </h1>
+    <h1 class="title">Comentarioss</h1>
     <div class="buttons">
       <button class="button button-clear" ng-click="closeComentarios()">Close</button>
     </div>
@@ -8,16 +8,14 @@
   <ion-pane>
   <ion-content>
   <div class="list">
-<div ng-if="comentarios" ng-repeat="coment in comentarios">
+
+<div ng-if="comentarios" ng-repeat="coment in coments">
 
 
     <a class="item item-avatar" href="#">
-      <img src="">
-      <h2>nombre</h2>
-      <p>cristhian bonilla cristhian bonilla
-      cristhian bonilla
-      cristhian bonilla
-      cristhian bonilla </p>
+      <img src="{{coment.imgPerfil}}">
+      <h2>{{coment.name}}</h2>
+      <p>{{coment.comentario}}</p>
     </a>
 
   
@@ -28,7 +26,9 @@
       <label class="item-input-wrapper">
         <input type="text" placeholder="Type your message" on-return="sendComentario(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
       </label>
-      <button class="button button-clear" ng-click="sendComentario(user,data.message)">
+
+
+      <button class="button button-clear" ng-click="sendComentario(user,data.message,idArtista)">
         Send
       </button>
     </ion-footer-bar>

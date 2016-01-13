@@ -56,9 +56,9 @@ app.factory('db', function($q,
 
 			artistasRef.$remove(id);
 		},
-		getComentarios: function(){
+		getComentarios: function(id){
 
-				var itemsRef = new Firebase("https://cookie7.firebaseio.com/comentarios");
+				var itemsRef = new Firebase("https://cookie7.firebaseio.com/comentarios"+id+"/");
 
 			
 
@@ -79,15 +79,16 @@ app.factory('db', function($q,
 		},
 		getFotoDePerfil:function(id){
 
-				var itemsRef = new Firebase("https://cookie7.firebaseio.com/users/10153449494886715/");
+				//var itemsRef = new Firebase("https://cookie7.firebaseio.com/users/10153449494886715/");
 
 				//var query = itemsRef.orderByChild("userId").equalTo("10153449494886715");
 
 
+var ref = new Firebase("https://cookie7.firebaseio.com/users/"+id+"/");
 
 				
 
-				return $firebaseArray(itemsRef);
+				return ref;
 
 
 		}
