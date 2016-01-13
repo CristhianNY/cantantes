@@ -24,11 +24,17 @@ mod.controller('MenuCtrl', function($scope,
   }).then(function(modal) {
     $scope.modal1 = modal;
   });
+   $ionicModal.fromTemplateUrl('templates/comentarios.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modal2 = modal;
+  });
 	$scope.artista= db.list(); 
   	$scope.show = {};
     $scope.contador = 0;
 	$scope.images = [];
 	$scope.artistas = Artistas;
+	$scope.coments = db.getComentarios();
 	$scope.imagenes = Img;
 	$scope.estado = 0;
 	var messagesRef = new Firebase(FIREBASE_URL);
@@ -38,6 +44,7 @@ mod.controller('MenuCtrl', function($scope,
 		$state.go('login');
 	};
 		$scope.contactar = function () {
+
 		 $scope.modal.show();
 	};
 		$scope.youtube = function () {
@@ -49,6 +56,14 @@ mod.controller('MenuCtrl', function($scope,
 		$scope.closeContactar = function () {
 		 $scope.modal.hide();
 	};
+	$scope.comentarios = function(){
+
+			 $scope.modal2.show();
+	}
+	$scope.closeComentarios = function(){
+
+			 $scope.modal2.hide();
+	}
 	$scope.resetFormData = function () {
 		$scope.formData = {
 			'title': '',
@@ -58,21 +73,11 @@ mod.controller('MenuCtrl', function($scope,
 		};
 	};
 	$scope.resetFormData();
-	
-
-
-		$scope.verporId = function(){
-		/*$scope.artistas.startAt(id).endAt(id).once('value',function(snap){
-			alert(snap.val())
-		});*/
-
-alert("carajo");
-	}
-
 	$scope.crearArtista = function(form){
 		if(form.$valid){
 		if($scope.images.length >0){
 			var tamaño =  $scope.artistas.length;
+			var like=1;
 			var id  = tamaño +1;
 	 $scope.artistas.$add({
         "nombreArtista": $scope.formData.nombre,
@@ -86,7 +91,8 @@ alert("carajo");
         "images":$scope.images,
         "estado": $scope.estado,
         "idUser" : $scope.user,
-        "id":id
+        "id":id,
+        "like": like
       }).then(function(){
       	
 		$state.go('app.mostrar');
@@ -100,6 +106,14 @@ alert("carajo");
 	alert("formulario invalido");
 }
 	}
+
+	$scope.like=function(id){
+
+
+
+	}
+
+
 	$scope.idYouTube = function(url){
 
  			var regex = new RegExp(/(?:\?v=)([^&]+)(?:\&)*/);
@@ -143,8 +157,6 @@ alert("carajo");
 			});
 		});
 	}
-
-
 	$scope.user = UserService.getUser();
  	$scope.quitarFoto = function(img){
 	var index = $scope.images.indexOf(img);
@@ -155,7 +167,6 @@ alert("carajo");
   $scope.contador = $scope.images.length;
 
 	}
-
 	$scope.showLogOutMenu = function() {
 		var hideSheet = $ionicActionSheet.show({
 			destructiveText: 'Logout',
@@ -169,8 +180,6 @@ alert("carajo");
 				$ionicLoading.show({
 				  template: 'Logging out...'
 				});
-
-        // Facebook logout
         facebookConnectPlugin.logout(function(){
           $ionicLoading.hide();
           $state.go('login');

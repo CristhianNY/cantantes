@@ -51,6 +51,9 @@ usersRef.child(id)
 }
 
     var getUser = function(){
+
+     // alert(JSON.parse(window.localStorage.starter_facebook_user || '{}'));
+
     return JSON.parse(window.localStorage.starter_facebook_user || '{}');
     };
 

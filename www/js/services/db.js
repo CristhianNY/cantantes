@@ -55,6 +55,41 @@ app.factory('db', function($q,
 		deleteArtista:function(id){
 
 			artistasRef.$remove(id);
+		},
+		getComentarios: function(){
+
+				var itemsRef = new Firebase("https://cookie7.firebaseio.com/comentarios");
+
+			
+
+				console.log($firebaseArray(itemsRef));
+			return $firebaseArray(itemsRef);
+		},
+		agregarComentarios:function(comentario){
+
+			artistasRef.$add({"comentario":comentario});
+
+		},
+		editarComentario:function(id){
+
+
+		},
+		deleteComentario:function(id){
+
+		},
+		getFotoDePerfil:function(id){
+
+				var itemsRef = new Firebase("https://cookie7.firebaseio.com/users/10153449494886715/");
+
+				//var query = itemsRef.orderByChild("userId").equalTo("10153449494886715");
+
+
+
+				
+
+				return $firebaseArray(itemsRef);
+
+
 		}
 
 

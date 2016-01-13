@@ -1,0 +1,36 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Comentarios </h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeComentarios()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-pane>
+  <ion-content>
+  <div class="list">
+<div ng-if="comentarios" ng-repeat="coment in comentarios">
+
+
+    <a class="item item-avatar" href="#">
+      <img src="">
+      <h2>nombre</h2>
+      <p>cristhian bonilla cristhian bonilla
+      cristhian bonilla
+      cristhian bonilla
+      cristhian bonilla </p>
+    </a>
+
+  
+  </div>
+</div>
+  </ion-content>
+   <ion-footer-bar keyboard-attach class="bar-stable item-input-inset">
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="Type your message" on-return="sendComentario(); closeKeyboard()" ng-model="data.message" on-focus="inputUp()" on-blur="inputDown()" />
+      </label>
+      <button class="button button-clear" ng-click="sendComentario(user,data.message)">
+        Send
+      </button>
+    </ion-footer-bar>
+</ion-pane>
+</ion-modal-view>
