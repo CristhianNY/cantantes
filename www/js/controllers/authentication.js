@@ -9,7 +9,7 @@ $scope.loggingIn = false;
 			$scope.loggingIn = true;
 			UserService.loginUser().then(function () {
 					$scope.loggingIn = false
-			    $state.go('app.home');
+			    $state.go('app.mostrar');
 		   });
 		}
 	}

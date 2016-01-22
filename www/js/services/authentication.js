@@ -5,7 +5,8 @@ app.service('UserService', function(FIREBASE_URL,
                                      $localstorage,
                                      $ionicPopup,
                                      $firebaseAuth,
-                                     $firebaseObject) {
+                                     $firebaseObject,
+                                     $firebaseArray) {
 
 
   var ref = new Firebase(FIREBASE_URL);
@@ -24,35 +25,29 @@ app.service('UserService', function(FIREBASE_URL,
   
    
   // alert(id);
-window.localStorage.starter_facebook_user = JSON.stringify(id);
 
+window.localStorage.starter_facebook_user = JSON.stringify({id,nombre,email,imagenPerfil,token});
+console.log(token);
 var auth = $firebaseAuth(ref);
 auth.$authWithOAuthToken("facebook",token).then(function (error, authData){
 
-usersRef.child(id)
-                          .transaction(function (currentUserData) {
-                            if (currentUserData === null) {
-                           
-                              return {
-                                'name': nombre,
-                                'email':email,
-                                'profilePic': imagenPerfil,
-                                'userId':id
-                              };
-                            }
-                             $localstorage.set('cantantes-user', id);
-                          },function (error, committed) {
-                     
-                            $localstorage.set('cantantes-user', id);
-                            self.current = $firebaseObject(usersRef.child(id));
-                          
-                          })
+      if (error) {
+   var itemsRef = new Firebase("https://cookie7.firebaseio.com/artistas");
+
+   $rootScope.artistasR = $firebaseArray(itemsRef);
+   
+  } else {
+    
+    console.log("Authenticated successfully with payload:", authData);
+  }
 });
 }
 
     var getUser = function(){
 
      // alert(JSON.parse(window.localStorage.starter_facebook_user || '{}'));
+    console.log("opteniendo usuario")
+    //console.log(JSON.parse(window.localStorage.starter_facebook_user || '{}'));
 
     return JSON.parse(window.localStorage.starter_facebook_user || '{}');
     };

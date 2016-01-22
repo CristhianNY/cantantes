@@ -14,52 +14,10 @@
   </ion-nav-buttons >
       <ion-content has-header="true" padding="true">
 
-<div class="list card">
 
-   <div class="card" ng-repeat="art in artistasR">
+<input class="center-content padding" value="hola" type="text"></input>
 
-  <div class="item item-body">
-    <div class="item item-divider">
 
-      <ion-list>
-
-     
-   {{art.nombreArtista}}
-  
-
-  
-
-  
-
-  </div>
-  <div>
-
-      <ion-slide-box auto-play="false" show-pager="false" >
- <ion-slide ng-repeat="img in artistasR[$index].images"> <img ng-click="verPorId(art.idUser)"class="full-image" ng-src="data:image/jpeg;base64,{{img}}" width="100%" /></ion-slide>
- </ion-slide-box>
-</div>
-  
-     <p>
-      <a href="#" class="subdued">{{art.like}} like</a>
-      <a href="#" class="subdued" ng-click="comentarios('{{art.$id}}')">5 Comments</a>
-    </p>
-      <div class="item tabs tabs-secondary tabs-icon-left">
-    <a class="tab-item" href="#">
-      <i ng-show="leDiste='true'" class="icon ion-thumbsup" ng-click="darLike(art.$id,art.like)"></i>
-   
-    </a>
-    <a class="tab-item" href="#" ng-click="comentarios('{{art.$id}}')">
-      <i class="icon ion-chatbox" ></i>
-      Comment
-    </a>
-    <a class="tab-item" href="#">
-      <i class="icon ion-share"></i>
-      Share
-    </a>
-  </div>
-  </div>
-
-</div>
 
 </div>
 

@@ -20,7 +20,7 @@ app.factory('db', function($q,
  		//alert($firebaseArray(itemsRef));
 	
 	console.log($firebaseArray(artistasRef));
-		  return $firebaseArray(artistasRef);	
+		  return $firebaseArray(itemsRef);	
 
 
 		},
@@ -60,9 +60,6 @@ app.factory('db', function($q,
 
 				var itemsRef = new Firebase("https://cookie7.firebaseio.com/comentarios"+id+"/");
 
-			
-
-				console.log($firebaseArray(itemsRef));
 			return $firebaseArray(itemsRef);
 		},
 		agregarComentarios:function(comentario){
@@ -77,6 +74,17 @@ app.factory('db', function($q,
 		deleteComentario:function(id){
 
 		},
+		getLikes:function(id){
+		/*var ref = new Firebase("https://cookie7.firebaseio.com/likes"+id+"/");
+
+				console.log("https://cookie7.firebaseio.com/likes/"+id+"/");
+
+				return ref;*/
+            var itemsRef = new Firebase("https://cookie7.firebaseio.com/likes"+id+"/");
+
+			return itemsRef;
+
+		},
 		getFotoDePerfil:function(id){
 
 				//var itemsRef = new Firebase("https://cookie7.firebaseio.com/users/10153449494886715/");
@@ -84,7 +92,7 @@ app.factory('db', function($q,
 				//var query = itemsRef.orderByChild("userId").equalTo("10153449494886715");
 
 
-var ref = new Firebase("https://cookie7.firebaseio.com/users/"+id+"/");
+				var ref = new Firebase("https://cookie7.firebaseio.com/users/"+id+"/");
 
 				
 

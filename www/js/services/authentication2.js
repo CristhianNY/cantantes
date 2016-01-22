@@ -143,6 +143,7 @@ app.service('UserService', function (FIREBASE_URL,
 												//
 												usersRef.child(authData.uid)
 													.transaction(function (currentUserData) {
+														 console.log (JSON.stringify (currentUserData));
 														if (currentUserData === null) {
 															//
 															// If the transaction is a success and the current user data is

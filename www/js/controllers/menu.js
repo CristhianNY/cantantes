@@ -6,13 +6,17 @@ mod.controller('MenuCtrl', function($scope,
 									$ionicActionSheet,
 									$ionicLoading,
 									UserService,
+									$rootScope,
 									db,
 									FIREBASE_URL,
 									Artistas,
+									Likes,
 									Img,
 									$firebaseArray,
 									$cordovaCamera,
 									$ionicSlideBoxDelegate) {
+
+
 
 	 $ionicModal.fromTemplateUrl('templates/contacto.html', {
     scope: $scope
@@ -29,13 +33,20 @@ mod.controller('MenuCtrl', function($scope,
   }).then(function(modal) {
     $scope.modal2 = modal;
   });
-	$scope.artista= db.list(); 
+	 
   	$scope.show = {};
     $scope.contador = 0;
 	$scope.images = [];
 	$scope.artistas = Artistas;
+	$scope.megustas = Likes;
 	$scope.imagenes = Img;
 	$scope.estado = 0;
+	console.log($rootScope.Usuario1+"siii o no?");
+    //$scope.artista= db.list();
+  var usuarioL = UserService.getUser();
+  console.log("hola"+usuarioL.userId);
+
+
 	var messagesRef = new Firebase(FIREBASE_URL);
 
 	$scope.logout = function () {
@@ -72,14 +83,147 @@ mod.controller('MenuCtrl', function($scope,
 			'picture': null
 		};
 	};
-	$scope.resetFormData();
+	$scope.resetFormData(); 
+	$scope.likes = function (idArtista){
+
+ 		var result = [];
+
+	//result= db.getLikes(idArtista);
+
+	console.log(result.length);
+
+	return result;
+
+	}
+
+	$scope.darLike = function(idArtista,like){
+
+	$scope.consultarLikes = db.getLikes(idArtista);
+
+	var numero = $firebaseArray($scope.consultarLikes).$loaded().then(function(num){
+
+			alert(num.length);
+
+	if(num.length>0){
+		$scope.consultarLikes.once("value", function(snapshot) {
+
+			
+  			snapshot.forEach(function(childSnapshot) {
+  				alert("se metio");
+
+  				 var key = childSnapshot.key();
+				 var usrLike = childSnapshot.val();
+  				 if((key == "idUser")&&(usrLike == $scope.user)){
+     			alert("ya le diste like");
+     			$scope.leDiste = false;
+     				return true;
+     			}
+
+    		
+
+ 		 })
+
+		});
+		if($scope.leDiste =="undefined"){
+
+			alert($scope.user);
+
+     				alert("no le has dado like");
+     					var agregarLike=$firebaseArray($scope.consultarLikes);
+
+				agregarLike.$add({"idArtista":idArtista,
+                            "idUser":$scope.user
+
+
+        });
+        var insertarLike= new Firebase('https://cookie7.firebaseio.com/artistas/'+idArtista);
+	
+		var dato = like+1;
+		
+	insertarLike.update({ 'like':dato}); 
+			
+
+     			}else{
+
+     				alert("ya le diste");
+     			}
+
+	}else{
+		alert("no hay likes asi ");
+			var agregarLike=$firebaseArray($scope.consultarLikes);
+
+				agregarLike.$add({"idArtista":idArtista,
+                            "idUser":$scope.user
+
+
+        }); 
+				var insertarLike= new Firebase('https://cookie7.firebaseio.com/artistas/'+idArtista);
+	
+		var dato = like+1;
+		
+	insertarLike.update({ 'like':dato});
+
+
+	}
+		
+		});
+		
+	
+
+		
+		
+		
+
+		
+	
+
+
+		//console.log(consultarLikes);
+
+		/*consultarLikes.once("value", function(snapshot) {
+			snapshot.forEach(function(childSnapshot) {
+
+        alert(childSnapshot.key());
+        alert(childSnapshot.val());
+    })
+		});*/
+
+
+		/*$scope.megustas.$add({
+
+			'idUser': $scope.user,
+			'idArtista':idArtista
+		})*/
+	    		
+		
+		
+		
+	}
+
+
 	$scope.crearArtista = function(form){
+		
 		if(form.$valid){
 		if($scope.images.length >0){
 			var tamaño =  $scope.artistas.length;
-			var like=1;
+			var like=0;
 			var id  = tamaño +1;
-	 $scope.artistas.$add({
+			//alert($scope.user);
+			/*alert($scope.formData.nombre);
+			alert($scope.formData.telefono);
+			alert($scope.formData.whatsapp);
+			alert($scope.formData.email);
+			alert($scope.formData.url);
+			alert($scope.formData.video);
+			alert($scope.formData.categoria);
+			alert($scope.formData.descripcio);
+			alert($scope.images);
+			alert( $scope.estado);
+			alert($scope.user);
+			alert(like);*/
+
+
+	 $rootScope.artistasR.$add({
         "nombreArtista": $scope.formData.nombre,
         "telefono":$scope.formData.telefono,
         "whatsapp":$scope.formData.whatsapp,
@@ -89,8 +233,8 @@ mod.controller('MenuCtrl', function($scope,
         "categoria":$scope.formData.categoria,
         "descripcion":$scope.formData.descripcion,	
         "images":$scope.images,
-        "estado": $scope.estado,
-        "idUser" : $scope.user,        
+        "estado":$scope.estado,
+        "idUser" : $rootScope.Usuario1,         
         "like": like
       }).then(function(){
       	
@@ -106,11 +250,7 @@ mod.controller('MenuCtrl', function($scope,
 }
 	}
 
-	$scope.like=function(id){
-
-
-
-	}
+	
 
 
 	$scope.idYouTube = function(url){
@@ -169,7 +309,7 @@ mod.controller('MenuCtrl', function($scope,
 	$scope.showLogOutMenu = function() {
 		var hideSheet = $ionicActionSheet.show({
 			destructiveText: 'Logout',
-			titleText: 'Are you sure you want to logout? This app is awsome so I recommend you to stay.',
+			titleText: 'Esta seguro Que deseas  salir?',
 			cancelText: 'Cancel',
 			cancel: function() {},
 			buttonClicked: function(index) {
@@ -177,7 +317,7 @@ mod.controller('MenuCtrl', function($scope,
 			},
 			destructiveButtonClicked: function(){
 				$ionicLoading.show({
-				  template: 'Logging out...'
+				  template: 'Saliendo...'
 				});
         facebookConnectPlugin.logout(function(){
           $ionicLoading.hide();

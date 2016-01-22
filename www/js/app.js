@@ -51,6 +51,14 @@ app.config(function ($stateProvider, $urlRouterProvider){
                         controller : 'MenuCtrl'
                     }
                 }
+            }).state('app.paises', {
+                url: '/paises',
+                views: {
+                    'home': {
+                        templateUrl: 'templates/paises.html',
+                        controller : 'MenuCtrl'
+                    }
+                }
             })
        .state('app.chat', {
                 url: '/chat',

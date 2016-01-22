@@ -40,7 +40,7 @@ mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios
         $scope.imgPerfil="";
         $scope.userId="";
     	  $rootScope.profileImage = db.getFotoDePerfil(id);
- 		$rootScope.profileImage.once("value", function(snapshot) {
+ 		 $rootScope.profileImage.once("value", function(snapshot) {
   // The callback function will get called twice, once for "fred" and once for "barney"
   snapshot.forEach(function(childSnapshot) {
     // key will be "fred" the first time and "barney" the second time
