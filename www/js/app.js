@@ -6,7 +6,8 @@ var app = angular.module('cantantes', ['ionic',
   'firebase',  
   'cantantes.controllers',
   'cantantes.services',
-  'cantantes.filters'
+  'cantantes.filters',
+  
   ])
     app.constant("FIREBASE_URL", 'https://cookie7.firebaseio.com/');
    // app.constant("FACEBOOK_APP_ID", '1511772949116522');
@@ -56,7 +57,7 @@ app.config(function ($stateProvider, $urlRouterProvider){
                 views: {
                     'home': {
                         templateUrl: 'templates/paises.html',
-                        controller : 'MenuCtrl'
+                        controller : 'controlInicial'
                     }
                 }
             })

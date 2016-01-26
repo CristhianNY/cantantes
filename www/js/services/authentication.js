@@ -43,6 +43,7 @@ auth.$authWithOAuthToken("facebook",token).then(function (error, authData){
 });
 }
 
+
     var getUser = function(){
 
      // alert(JSON.parse(window.localStorage.starter_facebook_user || '{}'));

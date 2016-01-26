@@ -28,7 +28,7 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
         authResponse.accessToken);
       $ionicLoading.hide();
      console.log("ir a mostrar");
-   $state.go('app.mostrar');
+   $state.go('app.paises');
     }, function(fail){
       // Fail get profile info
       console.log('profile info fail', fail);
@@ -83,7 +83,7 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
 
     		if(!user.userId){
 
-          alert("jo");
+      
 
           console.log("userId");
 
@@ -102,7 +102,7 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
 						});
             console.log("apunto de ir a app.mostrar");
 
-					 $state.go('app.mostrar');
+					 $state.go('app.paises');
 					}, function(fail){
 
         
@@ -113,7 +113,7 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
 
           console.log("ir a mostrar despues de else");
     
-					 $state.go('app.mostrar');
+					 $state.go('app.paises');
 				}
       } else {
 

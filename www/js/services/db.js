@@ -9,18 +9,21 @@ app.factory('db', function($q,
     var ref = new Firebase(FIREBASE_URL);
 	var artistasRef = new Firebase(FIREBASE_URL + "/artistas")
 
+
+
 	var lengthArtistas = function(){
 		return artistasRef.$getIndex().length;
 	}
 	return {
 
 		list:function(){
+		 var deferred = $q.defer();
 		var itemsRef = new Firebase("https://cookie7.firebaseio.com/artistas");
 			
  		//alert($firebaseArray(itemsRef));
-	
-	console.log($firebaseArray(artistasRef));
-		  return $firebaseArray(itemsRef);	
+	 deferred.resolve($firebaseArray(artistasRef));
+
+		  return deferred.promise;
 
 
 		},

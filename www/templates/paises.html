@@ -1,4 +1,4 @@
- <ion-view title="Crear Publicidad">
+ <ion-view class="intro" title="Paises">
 
       <ion-nav-buttons side="left">
 
@@ -13,26 +13,55 @@
     </button >
   </ion-nav-buttons >
       <ion-content has-header="true" padding="true">
+     <form name="formPaises"
+          novalidate="novalidate"
+          ng-submit="cargarGrupos(formPaises)"
+          class=" create-form" >
 
 
-<input class="center-content padding" value="hola" type="text"></input>
-
-
-
+<ion-multiple-select title="Seleccionar Pais" options="paises" key-property="id" value-property="name" selected-property="selected" class="item item-input item-icon-right">
+            <div class="input-label">
+             Pais
+            </div>
+            <i class="icon ion-android-arrow-dropdown"></i>
+          </ion-multiple-select>
+          <input type="hidden"  value="{{ getOptionsSelected(paises, 'name', 'selected') }}" placeholder="bla bla" id="pais">
+         <div class="card">
+  <div class="item item-divider">
+    Tu Pais es !
+  </div>
+  <div class="item item-text-wrap">
+    {{ getOptionsSelected(paises, 'name', 'selected') }}
+  </div>
 </div>
+         
+           <ion-multiple-select title="Select Groups" template-url="templates/multipleSelect.html" options="groups" key-property="Id" value-property="Name" selected-property="Selected" class="item item-input item-icon-right" render-checkbox="false" >
+            <div class="input-label">
+             Departamentos
+            </div>
+             
+            <i class="icon ion-android-arrow-dropdown"></i>
+          </ion-multiple-select>
+           <input type="hidden"  value=" {{ getOptionsSelected(groups, 'Name', 'Selected') }}" placeholder="bla bla" id="pais">
 
+
+            <div class="card">
+  <div class="item item-divider">
+    Tu Departamento es !
+  </div>
+  <div class="item item-text-wrap">
+    {{ getOptionsSelected(groups, 'Name', 'Selected') }}
+  </div>
+</div>
+ </form>
     </ion-content>
 
 
-    <div class="tabs tabs-icon-only">
-        <a nav-clear class="tab-item disable-user-behavior active" title="Home" nav-clear ui-sref="app.home">
-          <i class="icon ion-music-note"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
-        </a>
-        <a nav-clear class="tab-item disable-user-behavior" title="Artistas gold" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.chat">
-          <i class="icon ion-ribbon-b"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
-        </a>
-        <a nav-clear class="tab-item disable-user-behavior" title="Agregar" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.nuevo">
-          <i class="icon ion-plus-circled"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
-        </a>
-      </div>
+   <ion-footer-bar class="bar-positive" >
+    <button class="button button-clear button-full"
+           ng-click="cargarGrupos(formPaises)"  >Buscar Grupos
+    </button >
+    <input type="submit" form="formPaises" />
+  </ion-footer-bar >
+
     </ion-view>
