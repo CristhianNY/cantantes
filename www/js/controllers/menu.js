@@ -225,11 +225,12 @@ mod.controller('MenuCtrl', function($scope,
 		var ids = new Firebase("https://cookie7.firebaseio.com/ids/-KBQmIt5SUBwftMnmr4t");
 
 		var agregarArtista = $firebaseArray(NewArtista);
-			ids.on("value", function(snapshot) {
+			ids.once("value", function(snapshot) {
   console.log(snapshot.val().id);
+  var id = snapshot.val().id+1;
 
-  var val =snapshot.val().id
   agregarArtista.$add({
+  		"id":id,
         "nombreArtista": $scope.formData.nombre,
         "telefono":$scope.formData.telefono,
         "whatsapp":$scope.formData.whatsapp,
@@ -243,6 +244,7 @@ mod.controller('MenuCtrl', function($scope,
         "idUser" : $rootScope.Usuario1,         
         "like": like
       }).then(function(){
+	   ids.update({ 'id':id}); 
       	
 		$state.go('app.mostrar');
       });
@@ -252,9 +254,7 @@ mod.controller('MenuCtrl', function($scope,
 });
 
 
-		var id = $firebaseArray(ids);;
-
-		alert(agregarArtista );
+		
 
 	
 	 }else{
