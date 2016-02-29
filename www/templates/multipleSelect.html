@@ -21,6 +21,12 @@
                    </label>
                    {{ option[multipleSelect.valueProperty] }}
                 </li>
+                   <li class="item item-checkbox" ng-repeat="option in multipleSelect.tempOptions" ng-if="multipleSelect.renderCheckbox">
+                   <label class="checkbox">
+                     <input type="checkbox" ng-model="option[multipleSelect.selectedProperty]">
+                   </label>
+                   {{ option[multipleSelect.valueProperty] }}
+                </li>
             </ul>
         </ion-content>
     </ion-modal-view>

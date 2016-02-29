@@ -45,12 +45,12 @@ auth.$authWithOAuthToken("facebook",token).then(function (error, authData){
 
 
     var getUser = function(){
-
+       var deferred = $q.defer();
      // alert(JSON.parse(window.localStorage.starter_facebook_user || '{}'));
     console.log("opteniendo usuario")
     //console.log(JSON.parse(window.localStorage.starter_facebook_user || '{}'));
-
-    return JSON.parse(window.localStorage.starter_facebook_user || '{}');
+        deferred.resolve(JSON.parse(window.localStorage.starter_facebook_user || '{}'));
+    return deferred.promise;
     };
 
     return {

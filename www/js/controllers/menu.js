@@ -102,7 +102,7 @@ mod.controller('MenuCtrl', function($scope,
 
 	var numero = $firebaseArray($scope.consultarLikes).$loaded().then(function(num){
 
-			alert(num.length);
+			
 
 	if(num.length>0){
 		$scope.consultarLikes.once("value", function(snapshot) {
@@ -221,16 +221,22 @@ mod.controller('MenuCtrl', function($scope,
 			alert( $scope.estado);
 			alert($scope.user);
 			alert(like);*/
+		var NewArtista = new Firebase("https://cookie7.firebaseio.com/artistas");
+		var ids = new Firebase("https://cookie7.firebaseio.com/ids/-KBQmIt5SUBwftMnmr4t");
 
+		var agregarArtista = $firebaseArray(NewArtista);
+			ids.on("value", function(snapshot) {
+  console.log(snapshot.val().id);
 
-	 $rootScope.artistasR.$add({
+  var val =snapshot.val().id
+  agregarArtista.$add({
         "nombreArtista": $scope.formData.nombre,
         "telefono":$scope.formData.telefono,
         "whatsapp":$scope.formData.whatsapp,
         "email":$scope.formData.email,
         "url":$scope.formData.url,
         "video":$scope.formData.video,
-        "categoria":$scope.formData.categoria,
+        "categoria":$scope.formData.categoria+'medellin'+'colombia',
         "descripcion":$scope.formData.descripcion,	
         "images":$scope.images,
         "estado":$scope.estado,
@@ -241,6 +247,16 @@ mod.controller('MenuCtrl', function($scope,
 		$state.go('app.mostrar');
       });
 	 
+}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+});
+
+
+		var id = $firebaseArray(ids);;
+
+		alert(agregarArtista );
+
+	
 	 }else{
 
 	alert("por favor seleccione una foto");
@@ -296,7 +312,10 @@ mod.controller('MenuCtrl', function($scope,
 			});
 		});
 	}
-	$scope.user = UserService.getUser();
+	$scope.user = UserService.getUser().then(function (d){
+
+		
+	});
  	$scope.quitarFoto = function(img){
 	var index = $scope.images.indexOf(img);
 	    if (index > -1){

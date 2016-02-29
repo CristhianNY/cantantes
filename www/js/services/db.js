@@ -6,7 +6,7 @@ app.factory('db', function($q,
 									 $ionicScrollDelegate,
 									 FIREBASE_URL,
                                      UserService) {
-    var ref = new Firebase(FIREBASE_URL);
+    //var ref = new Firebase(FIREBASE_URL);
 	var artistasRef = new Firebase(FIREBASE_URL + "/artistas")
 
 
@@ -16,14 +16,39 @@ app.factory('db', function($q,
 	}
 	return {
 
-		list:function(){
-		 var deferred = $q.defer();
-		var itemsRef = new Firebase("https://cookie7.firebaseio.com/artistas");
-			
- 		//alert($firebaseArray(itemsRef));
-	 deferred.resolve($firebaseArray(artistasRef));
+		list:function(pais, departamento,genero){
 
-		  return deferred.promise;
+		
+			var ids =[];
+		 var deferred = $q.defer();
+new Firebase("https://cookie7.firebaseio.com/artistas")
+    .startAt(2) // assumes the priority is the page number
+    .endAt(2)
+    .once('value', function(snap) {
+       console.log('messages in range', snap.val());
+    });
+	var ref = new Firebase("https://cookie7.firebaseio.com/artistas");
+
+console.log(genero+departamento+pais);
+ref.orderByChild("categoria").equalTo(genero+departamento+pais).on("child_added", function(snapshot) {
+	ids.push(snapshot.key());
+	
+
+	//console.log(ids);
+  //console.log(snapshot.key());
+  var id = snapshot.key();
+ 
+	
+	//guardar en un array los id y mandarlos como promesa
+		 
+   deferred.resolve(ids);
+}); 
+
+
+
+
+   return deferred.promise;
+		 
 
 
 		},
@@ -87,6 +112,11 @@ app.factory('db', function($q,
 
 			return itemsRef;
 
+		},
+		getIds:function(){
+		var itemsRef = new Firebase("https://cookie7.firebaseio.com/ids/-KBQmIt5SUBwftMnmr4t/id");
+
+		return $firebaseArray(itemsRef);
 		},
 		getFotoDePerfil:function(id){
 

@@ -16,20 +16,55 @@ mod.controller('controlInicial', function ($scope,$rootScope,
     {Id: 4, Name: "Ibagué", Selected: false}
   ];
 
+
+  
+
   $scope.cargarGrupos= function(form){
   $ionicLoading.show({
           template: 'Buscando'
         });
- db.list().then(function(data){
+  var pais = document.getElementById("pais").value;
+
+  var ciudad = document.getElementById("ciudad").value;
+  var genero = document.getElementById("genero").value;
+
+
+$rootScope.pais = pais;
+$rootScope.ciudad=  ciudad;
+
+
+ db.list(pais,ciudad,genero).then(function(data){
+
+  var grupos =[];
+  var codigos =[];
+  var datosParaVer ={};
   $ionicLoading.hide();
 
+  data.forEach(function(childSnapshot) {
+      
+         //console.log(childSnapshot);
+         var refw = new Firebase("https://cookie7.firebaseio.com/artistas/"+childSnapshot);
 
- $rootScope.artistasR = data;
-   console.log(data);
+         dato = $firebaseArray(refw);
+
+         //(console.log(dato);
+          codigos.push(childSnapshot);
+         grupos.push(dato);
+
+       
+        $rootScope.codigos = codigos;
+         $rootScope.artistasR =grupos;
+
+     });
+          console.log(grupos);
+
+
+  //$rootScope.artistasR = data;
+   //console.log(data);
    $state.go('app.mostrar');
 });
       
-console.log(document.getElementById("pais").value);
+
 
   }
     $scope.getOptionsSelected = function(options, valueProperty, selectedProperty){

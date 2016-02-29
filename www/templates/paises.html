@@ -17,42 +17,71 @@
           novalidate="novalidate"
           ng-submit="cargarGrupos(formPaises)"
           class=" create-form" >
-
-
-<ion-multiple-select title="Seleccionar Pais" options="paises" key-property="id" value-property="name" selected-property="selected" class="item item-input item-icon-right">
-            <div class="input-label">
-             Pais
-            </div>
-            <i class="icon ion-android-arrow-dropdown"></i>
-          </ion-multiple-select>
-          <input type="hidden"  value="{{ getOptionsSelected(paises, 'name', 'selected') }}" placeholder="bla bla" id="pais">
-         <div class="card">
-  <div class="item item-divider">
-    Tu Pais es !
+<div class="item item-divider">
+   Pais
   </div>
-  <div class="item item-text-wrap">
-    {{ getOptionsSelected(paises, 'name', 'selected') }}
-  </div>
-</div>
+
+            <select class="item item-input item-icon-right" id="pais"style="width: 100%; height: 50px">
+  <option value="colombia">Colombia</option>
+  <option value="mexico">Mexico</option>
+  <option value="peru">Perú</option>
+  <option value="ecuador">Ecuador</option>
+  <option value="bolivia">Bolivia</option>
+  <option value="chile">Chile</option>
+  <option value="argentina">Argentina</option>
+  <option value="costa rica">Costa rica</option>
+  <option value="salvador">Salvador</option>
+  <option value="guatemala">Guatemala</option>
+</select>
          
-           <ion-multiple-select title="Select Groups" template-url="templates/multipleSelect.html" options="groups" key-property="Id" value-property="Name" selected-property="Selected" class="item item-input item-icon-right" render-checkbox="false" >
-            <div class="input-label">
-             Departamentos
-            </div>
-             
-            <i class="icon ion-android-arrow-dropdown"></i>
-          </ion-multiple-select>
-           <input type="hidden"  value=" {{ getOptionsSelected(groups, 'Name', 'Selected') }}" placeholder="bla bla" id="pais">
-
-
-            <div class="card">
+        
   <div class="item item-divider">
-    Tu Departamento es !
+  Ciudad
   </div>
-  <div class="item item-text-wrap">
-    {{ getOptionsSelected(groups, 'Name', 'Selected') }}
+ 
+         
+           
+
+            <select class="item item-input item-icon-right" id="ciudad" style="width: 100%; height: 50px" >
+  <option selected value="medellin">Medellín</option>
+  <option value="Armenia">Armenia</option>
+  <option value="cali">cali</option>
+  <option value="Ibague">Ibagué</option>
+  <option value="bucaramanga">Mercedes</option>
+  <option value="bogota">Bogotá</option>
+  <option value="cartagena">Cartagena</option>
+  <option value="santa marta">Santa marta</option>
+  <option value="barranquilla">Barranquilla</option>
+  <option value="sincelejo">Sincelejo</option>
+  <option value="valledupar">Valledupar</option>
+
+
+</select>
+
+       
+
+           
+  <div class="item item-divider">
+ Genero
   </div>
-</div>
+
+<select class="item item-input item-icon-right" id="genero" style="width: 100%; height: 50px" >
+
+  <option value="artistasoro">Arstistas de Oro</option>
+  <option value="agrupaciones">Agrupaciones </option>
+  <option value="solistas">Solistas</option>
+  <option value="vallenatos">Conjuntos vallenatos</option>
+  <option value="reggaeton">reggaeton</option>
+  <option value="Mariachis">Brian</option>
+  <option value="Duetos">Orquestas</option>
+  <option value="papayeras">papayeras</option>
+  <option value="trobadores">Trobadores</option>
+  <option value="cristianos">Cristianos</option>
+  <option value="llanera">Llanera</option>
+  
+</select>
+       </div>  
+   
  </form>
     </ion-content>
 

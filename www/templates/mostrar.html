@@ -16,17 +16,45 @@
 
 <div class="list card">
 
-   <div class="card" ng-repeat="art in artistasR">
+  <div>
+
+
+
+
+   <div class="card"  ng-repeat="art in artistasR">
 
   <div class="item item-body">
     <div class="item item-divider">
 
       <ion-list>
 
-     
-   {{art.nombreArtista}}
+
+
+  
+<div ng-repeat="i in art"> 
+
+{{i.$value}}
+
+
+<div> 
+
+ 
+ <ion-slide-box auto-play="false" show-pager="false" >
+ <ion-slide ng-repeat="a in i">
+
+  <img ng-click="verPorId(art.idUser)"class="full-image" ng-src="data:image/jpeg;base64,{{a}}" width="100%" /></ion-slide>
+ </ion-slide-box>
+
+
+
+
+</div>
   
 
+
+
+
+</div>
   
 
   
@@ -34,21 +62,18 @@
   </div>
   <div>
 
-      <ion-slide-box auto-play="false" show-pager="false" >
- <ion-slide ng-repeat="img in artistasR[$index].images"> <img ng-click="verPorId(art.idUser)"class="full-image" ng-src="data:image/jpeg;base64,{{img}}" width="100%" /></ion-slide>
- </ion-slide-box>
 </div>
   
      <p>
       <a href="#" class="subdued">{{art.like}} like</a>
-      <a href="#" class="subdued" ng-click="comentarios('{{art.$id}}')">5 Comments</a>
+      <a href="#" class="subdued" ng-click="comentarios('{{codigos[$index]}}')">5 Comments</a>
     </p>
       <div class="item tabs tabs-secondary tabs-icon-left">
     <a class="tab-item" href="#">
-      <i ng-show="leDiste='true'" class="icon ion-thumbsup" ng-click="darLike(art.$id,art.like)"></i>
+      <i ng-show="leDiste='true'" class="icon ion-thumbsup" ng-click="darLike(codigos[$index],art.like)"></i>
    
     </a>
-    <a class="tab-item" href="#" ng-click="comentarios('{{art.$id}}')">
+    <a class="tab-item" href="#" ng-click="comentarios('{{codigos[$index]}}')">
       <i class="icon ion-chatbox" ></i>
       Comment
     </a>
@@ -62,6 +87,7 @@
 </div>
 
 </div>
+</div>
 
     </ion-content>
 
@@ -74,7 +100,7 @@
           <i class="icon ion-ribbon-b"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
         </a>
         <a nav-clear class="tab-item disable-user-behavior" title="Agregar" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.nuevo">
-          <i class="icon ion-plus-circled"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
+          <i class="icon ion-ios-search-strong"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
         </a>
       </div>
     </ion-view>

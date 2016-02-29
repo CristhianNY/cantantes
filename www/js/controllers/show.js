@@ -34,15 +34,16 @@ mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios
 
     $rootScope.sendComentario=function(id,comentario,idArtista){
 
-
+    console.log("probando"+ $rootScope.Usuario1);
         $scope.email="";
         $scope.name="";
         $scope.imgPerfil="";
         $scope.userId="";
-    	  $rootScope.profileImage = db.getFotoDePerfil(id);
+    	  $rootScope.profileImage = db.getFotoDePerfil($rootScope.Usuario1);
  		 $rootScope.profileImage.once("value", function(snapshot) {
   // The callback function will get called twice, once for "fred" and once for "barney"
   snapshot.forEach(function(childSnapshot) {
+
     // key will be "fred" the first time and "barney" the second time
   
     var key = childSnapshot.key();
@@ -65,8 +66,13 @@ mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios
        $scope.userId = childSnapshot.val();
     }
 
-    if(($scope.email!="")&&( $scope.name!="")&&( $scope.imgPerfil!="")&&($scope.userId!="")){
-    
+   if(($scope.email!="")&&( $scope.name!="")&&( $scope.imgPerfil!="")&&($scope.userId!="")){
+     
+    console.log(comentario);
+    console.log($scope.imgPerfil);
+    console.log($scope.name);
+    console.log($scope.userId);
+    console.log(idArtista);
       $scope.coments.$add({"comentario":comentario,
                             "imgPerfil":$scope.imgPerfil,
                             "name":$scope.name,
