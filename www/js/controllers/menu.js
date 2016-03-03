@@ -96,9 +96,33 @@ mod.controller('MenuCtrl', function($scope,
 
 	}
 
-	$scope.darLike = function(idArtista,like){
+	$scope.darLike = function(idArtista){
 
-	$scope.consultarLikes = db.getLikes(idArtista);
+console.log($scope.user);
+		
+		var ref = new Firebase("https://cookie7.firebaseio.com/artistas/"+idArtista);
+		ref.once("value", function(snapshot) {
+
+
+snapshot.forEach(function(like){
+
+if(like.key()=="like"){
+
+var likes = like.val();
+alert(Likes);
+
+
+
+
+
+
+
+ 
+  
+ 
+var art = idArtista+$rootScope.Usuario1;
+
+	$scope.consultarLikes = db.getLikes(art);
 
 	var numero = $firebaseArray($scope.consultarLikes).$loaded().then(function(num){
 
@@ -113,8 +137,8 @@ mod.controller('MenuCtrl', function($scope,
 
   				 var key = childSnapshot.key();
 				 var usrLike = childSnapshot.val();
-  				 if((key == "idUser")&&(usrLike == $scope.user)){
-     			alert("ya le diste like");
+  				 if((key == "idUser")&&(usrLike == $rootScope.Usuario1)){
+     			alert("ya le diste like por aca ");
      			$scope.leDiste = false;
      				return true;
      			}
@@ -124,42 +148,46 @@ mod.controller('MenuCtrl', function($scope,
  		 })
 
 		});
+		console.log($scope.leDiste);
 		if($scope.leDiste =="undefined"){
+			alert("por aca vamos todos	")
 
-			alert($scope.user);
+			alert($rootScope.Usuario1);
 
      				alert("no le has dado like");
      					var agregarLike=$firebaseArray($scope.consultarLikes);
 
 				agregarLike.$add({"idArtista":idArtista,
-                            "idUser":$scope.user
+                            "idUser":$rootScope.Usuario1
 
 
         });
         var insertarLike= new Firebase('https://cookie7.firebaseio.com/artistas/'+idArtista);
-	
-		var dato = like+1;
+		
+		alert(likes+1);
+		var dato = likes+1;
 		
 	insertarLike.update({ 'like':dato}); 
 			
 
      			}else{
+     				console.log($scope.leDiste);
 
-     				alert("ya le diste");
+     				alert("ya le diste por aca tambien");
+
      			}
 
 	}else{
 		alert("no hay likes asi ");
 			var agregarLike=$firebaseArray($scope.consultarLikes);
 
-				agregarLike.$add({"idArtista":idArtista,
-                            "idUser":$scope.user
+				agregarLike.$add({"idArtista":idArtista+$rootScope.Usuario1
 
 
         }); 
 				var insertarLike= new Firebase('https://cookie7.firebaseio.com/artistas/'+idArtista);
-	
-		var dato = like+1;
+
+		var dato = likes+1;
 		
 	insertarLike.update({ 'like':dato});
 
@@ -170,10 +198,11 @@ mod.controller('MenuCtrl', function($scope,
 		
 	
 
+		}
 		
-		
-		
+		});
 
+});
 		
 	
 

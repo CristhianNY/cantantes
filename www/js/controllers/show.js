@@ -67,6 +67,8 @@ mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios
     }
 
    if(($scope.email!="")&&( $scope.name!="")&&( $scope.imgPerfil!="")&&($scope.userId!="")){
+
+    console.log("por aca si entro al if de comentario");
      
     console.log(comentario);
     console.log($scope.imgPerfil);
@@ -81,6 +83,8 @@ mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios
 
 
         });
+    }else{
+      console.log("a ese if no entro ");
     }
  
   });

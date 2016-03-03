@@ -34,6 +34,9 @@
 <div ng-repeat="i in art"> 
 
 {{i.$value}}
+ <div ng-if="i.$id=='like'">
+ <div ng-init="likes=i.$value"> {{likes}}</div>
+    </div>
 
 
 <div> 
@@ -63,17 +66,28 @@
   <div>
 
 </div>
-  
+
+ <p ng-init="id=codigos[$index]"></p>
+  <div ng-repeat="s in art">
+     
+
+   
+
+<div ng-show="s.$id =='id'">
+
      <p>
-      <a href="#" class="subdued">{{art.like}} like</a>
-      <a href="#" class="subdued" ng-click="comentarios('{{codigos[$index]}}')">5 Comments</a>
+ {{li}} aca esta 
+      <a href="#" class="subdued">{{s.$value}} like</a>
+      <a href="#" class="subdued" ng-click="comentarios('{{id}}')">Comments</a>
     </p>
       <div class="item tabs tabs-secondary tabs-icon-left">
     <a class="tab-item" href="#">
-      <i ng-show="leDiste='true'" class="icon ion-thumbsup" ng-click="darLike(codigos[$index],art.like)"></i>
+
+
+      <i ng-show="leDiste='true'" class="icon ion-thumbsup" ng-click="darLike('{{id}}')"></i>
    
-    </a>
-    <a class="tab-item" href="#" ng-click="comentarios('{{codigos[$index]}}')">
+    </a> 
+    <a class="tab-item" href="#" ng-click="comentarios('{{id}}')">
       <i class="icon ion-chatbox" ></i>
       Comment
     </a>
@@ -82,6 +96,9 @@
       Share
     </a>
   </div>
+  </div>
+
+</div>
   </div>
 
 </div>
