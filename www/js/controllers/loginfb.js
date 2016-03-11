@@ -1,6 +1,6 @@
 var app = angular.module('cantantes.controllers.loginfb', []);
 
-app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $ionicLoading) {
+app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $ionicLoading,db) {
   // This is the success callback from the login method
   var fbLoginSuccess = function(response) {
    
@@ -17,6 +17,8 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
     .then(function(profileInfo) {
 
     $rootScope.Usuario1 = profileInfo.id;
+    $rootScope.imagendeperfil = profileInfo.id;
+
 
      console.log($scope.Usuario1 +"usuario");
       // For the purpose of this example I will store user data on local storage
@@ -26,6 +28,7 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
         profileInfo.email,
         imagenPerfil,
         authResponse.accessToken);
+       $rootScope.imagendeperfil =imagenPerfil;
       $ionicLoading.hide();
      console.log("ir a mostrar");
    $state.go('app.paises');
@@ -77,7 +80,7 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
 
     		// Check if we have our user saved
     		var user = UserService.getUser('facebook');
-        console.log(user);
+        console.log(user+"este que pitos toca");
 
      
 
@@ -90,9 +93,20 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
       
 					getFacebookProfileInfo(success.authResponse)
 					.then(function(profileInfo) {
-        
+         
 						// For the purpose of this example I will store user data on local storage
               // $localstorage.set('cantantes-user', profileInfo.id);
+
+              var referenciaUser = db.getUser(profileInfo.id);
+
+               referenciaUser.set({"userId":profileInfo.id,
+                            "name":profileInfo.name,
+                            "email":profileInfo.email,
+                            "picture": "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
+
+
+        });
+              console.log( success.authResponse.userID+"jajaj");
 						UserService.setUser({
 							authResponse: success.authResponse,
 							userID: profileInfo.id,
@@ -100,7 +114,7 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
 							email: profileInfo.email,
 							picture : "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
 						});
-            console.log("apunto de ir a app.mostrar");
+            console.log("apunto de ir a app.mostrar aqui");
 
 					 $state.go('app.paises');
 					}, function(fail){
@@ -110,6 +124,41 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
 						console.log('profile info fail', fail);
 					});
 				}else{
+            console.log("userId");
+
+      
+          getFacebookProfileInfo(success.authResponse)
+          .then(function(profileInfo) {
+         
+            // For the purpose of this example I will store user data on local storage
+              // $localstorage.set('cantantes-user', profileInfo.id);
+
+              var referenciaUser = db.getUser(profileInfo.id);
+
+               referenciaUser.set({"userId":profileInfo.id,
+                            "name":profileInfo.name,
+                            "email":profileInfo.email,
+                            "picture": "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
+
+
+        });
+              console.log( success.authResponse.userID+"jajaj");
+            UserService.setUser({
+              authResponse: success.authResponse,
+              userID: profileInfo.id,
+              name: profileInfo.name,
+              email: profileInfo.email,
+              picture : "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
+            });
+            console.log("apunto de ir a app.mostrar aqui");
+
+           $state.go('app.paises');
+          }, function(fail){
+
+        
+            // Fail get profile info
+            console.log('profile info fail', fail);
+          });
 
           console.log("ir a mostrar despues de else");
     
@@ -121,6 +170,8 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
 				// but has not authenticated your app
         // Else the person is not logged into Facebook,
 				// so we're not sure if they are logged into this app or not.
+        success.status
+
         console.log("ver estatus");
 				console.log('getLoginStatus', success.status);
 

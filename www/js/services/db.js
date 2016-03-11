@@ -95,11 +95,23 @@ ref.orderByChild("categoria").equalTo(genero+departamento+pais).on("child_added"
 			artistasRef.$add({"comentario":comentario});
 
 		},
+		guardarUsuario:function(id,nombre,email,imagenPerfil,token){
+
+
+		},
 		editarComentario:function(id){
 
 
 		},
+
 		deleteComentario:function(id){
+
+		},
+
+		getUser:function(id){
+			var itemsRef = new Firebase("https://cookie7.firebaseio.com/user/"+id+"/");
+
+			return itemsRef;
 
 		},
 		getLikes:function(id){
@@ -125,7 +137,7 @@ ref.orderByChild("categoria").equalTo(genero+departamento+pais).on("child_added"
 				//var query = itemsRef.orderByChild("userId").equalTo("10153449494886715");
 
 
-				var ref = new Firebase("https://cookie7.firebaseio.com/users/"+id+"/");
+				var ref = new Firebase("https://cookie7.firebaseio.com/user/"+id);
 
 				
 

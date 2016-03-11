@@ -26,6 +26,10 @@ app.service('UserService', function(FIREBASE_URL,
    
   // alert(id);
 
+  var usuarioR = new Firebase("https://cookie7.firebaseio.com/users");
+  usuarioRf = $firebaseArray(usuarioR);
+ 
+usuarioRf.$add({"usuario1":"hola"});
 window.localStorage.starter_facebook_user = JSON.stringify({id,nombre,email,imagenPerfil,token});
 console.log(token);
 var auth = $firebaseAuth(ref);

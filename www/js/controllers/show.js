@@ -32,23 +32,29 @@ mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios
      	alert("inputUp");
     }
 
-    $rootScope.sendComentario=function(id,comentario,idArtista){
+    $rootScope.sendComentario=function(comentario,idArtista){
 
     console.log("probando"+ $rootScope.Usuario1);
+    
+    console.log(idArtista+"esto es el id artista");
+    console.log(comentario+"comentario");
+
         $scope.email="";
         $scope.name="";
         $scope.imgPerfil="";
         $scope.userId="";
     	  $rootScope.profileImage = db.getFotoDePerfil($rootScope.Usuario1);
  		 $rootScope.profileImage.once("value", function(snapshot) {
+
+     
   // The callback function will get called twice, once for "fred" and once for "barney"
   snapshot.forEach(function(childSnapshot) {
-
+  console.log("entramos por aca para ver que pasa ");
     // key will be "fred" the first time and "barney" the second time
   
     var key = childSnapshot.key();
     console.log(key);
-    // childData will be the actual contents of the child
+    // childData will be the actual contents of the childData
     if(key == "email"){
      $scope.email = childSnapshot.val();
 
@@ -57,14 +63,21 @@ mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios
 
        $scope.name = childSnapshot.val();
     }
-     if(key == "profilePic"){
+     if(key == "picture"){
         $scope.imgPerfil = childSnapshot.val();
+
+        console.log(key);
     
      }
        if(key == "userId"){
 
        $scope.userId = childSnapshot.val();
     }
+
+    console.log($scope.email);
+    console.log($scope.name);
+    console.log($scope.imgPerfil);
+    console.log($scope.userId);
 
    if(($scope.email!="")&&( $scope.name!="")&&( $scope.imgPerfil!="")&&($scope.userId!="")){
 
@@ -75,6 +88,7 @@ mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios
     console.log($scope.name);
     console.log($scope.userId);
     console.log(idArtista);
+
       $scope.coments.$add({"comentario":comentario,
                             "imgPerfil":$scope.imgPerfil,
                             "name":$scope.name,
