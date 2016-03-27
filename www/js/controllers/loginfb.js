@@ -17,6 +17,10 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
     .then(function(profileInfo) {
 
     $rootScope.Usuario1 = profileInfo.id;
+     window.localStorage['identificador'] = profileInfo.id;
+             var identificador=  window.localStorage['identificador'] || 'you';
+             
+ 
     $rootScope.imagendeperfil = profileInfo.id;
 
 

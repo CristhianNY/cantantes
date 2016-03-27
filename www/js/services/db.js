@@ -21,31 +21,40 @@ app.factory('db', function($q,
 		
 			var ids =[];
 		 var deferred = $q.defer();
-new Firebase("https://cookie7.firebaseio.com/artistas")
-    .startAt(2) // assumes the priority is the page number
-    .endAt(2)
-    .once('value', function(snap) {
-       console.log('messages in range', snap.val());
-    });
+
 	var ref = new Firebase("https://cookie7.firebaseio.com/artistas");
 
-console.log(genero+departamento+pais);
+
+
 ref.orderByChild("categoria").equalTo(genero+departamento+pais).on("child_added", function(snapshot) {
 	ids.push(snapshot.key());
 	
 
 	//console.log(ids);
   //console.log(snapshot.key());
+
   var id = snapshot.key();
- 
+
+console.log(id);
+
+
+
 	
 	//guardar en un array los id y mandarlos como promesa
 		 
    deferred.resolve(ids);
-}); 
+},function(error){
 
 
 
+	 deferred.reject(error);
+});
+
+if(ids.length >0){
+
+}else{
+	 deferred.reject(ids);
+}
 
    return deferred.promise;
 		 

@@ -150,11 +150,11 @@ var art = idArtista+$rootScope.Usuario1;
 		});
 		console.log($scope.leDiste);
 		if($scope.leDiste =="undefined"){
-			alert("por aca vamos todos	")
+			//alert("por aca vamos todos	")
 
-			alert($rootScope.Usuario1);
+			//alert($rootScope.Usuario1);
 
-     				alert("no le has dado like");
+     				//alert("no le has dado like");
      					var agregarLike=$firebaseArray($scope.consultarLikes);
 
 				agregarLike.$add({"idArtista":idArtista,
@@ -164,7 +164,7 @@ var art = idArtista+$rootScope.Usuario1;
         });
         var insertarLike= new Firebase('https://cookie7.firebaseio.com/artistas/'+idArtista);
 		
-		alert(likes+1);
+	//	alert(likes+1);
 		var dato = likes+1;
 		
 	insertarLike.update({ 'like':dato}); 
@@ -178,7 +178,7 @@ var art = idArtista+$rootScope.Usuario1;
      			}
 
 	}else{
-		alert("no hay likes asi ");
+		//alert("no hay likes asi ");
 			var agregarLike=$firebaseArray($scope.consultarLikes);
 
 				agregarLike.$add({"idArtista":idArtista+$rootScope.Usuario1

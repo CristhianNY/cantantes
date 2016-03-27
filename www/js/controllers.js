@@ -6,7 +6,8 @@ var mod = angular.module('cantantes.controllers', [
 	'cantantes.controllers.contacto',
 	'cantantes.controllers.loginfb',
 	'cantantes.controllers.show',
-	'cantantes.controllers.controlInicial'
+	'cantantes.controllers.controlInicial',
+	'cantantes.controllers.ver'
 
 
 	]);

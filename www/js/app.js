@@ -81,12 +81,12 @@ app.config(function ($stateProvider, $urlRouterProvider){
                 }
             })
           .state('app.mostrarbyid', {
-           cache: true,
-                url: '/mostrarbyid',
+           cache: false,
+                url: '/:categoria',
                 views: {
                     'home': {
                         templateUrl: 'templates/mostrarbyid.html',
-                        controller : 'Show'
+                        controller : 'Ver'
                     }
                 }
             })

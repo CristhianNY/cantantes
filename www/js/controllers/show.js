@@ -1,5 +1,5 @@
 var mod = angular.module('cantantes.controllers.show', []);
-mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios
+mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios,$stateParams
 	) {
 
 
@@ -12,6 +12,16 @@ mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios
 		showInfo: false
 	};
 
+
+    var categoria = $stateParams.categoria;
+    console.log(categoria);
+
+     //getting fooVal
+    
+
+
+
+
  $scope.verPorId = function(id) {
 /*new Firebase('https://cookie7.firebaseio.com/artistas/'+id).once('value', function(snap) {
    console.log('datposs', snap.val());
@@ -21,6 +31,12 @@ mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios
 });*/
  	$rootScope.arti=  db.findArtista(id); 
 	 console.log($scope.arti);
+   $scope.sprocketInfo = 
+            $http.get("app/mostrarbyid" + $stateParams.id)
+                .then(function(res){ return res.data; });
+
+
+                console.log($scope.sprocketInfo);
 	
 
 	 $state.go('app.mostrarbyid');
@@ -38,12 +54,15 @@ mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios
     
     console.log(idArtista+"esto es el id artista");
     console.log(comentario+"comentario");
+    console.log("cristhian bonilla es id"+window.localStorage['identificador'] || 'you');
+  
+   var id_User = window.localStorage['identificador'] || 'you';
 
         $scope.email="";
         $scope.name="";
         $scope.imgPerfil="";
         $scope.userId="";
-    	  $rootScope.profileImage = db.getFotoDePerfil($rootScope.Usuario1);
+    	  $rootScope.profileImage = db.getFotoDePerfil(id_User);
  		 $rootScope.profileImage.once("value", function(snapshot) {
 
      

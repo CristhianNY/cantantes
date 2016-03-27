@@ -66,7 +66,7 @@ app.service("Creador", function (    $stateParams,
 	};
 			self.isSaving = true;
 			var d = $q.defer();
-			alert(datos.Artista)
+			//alert(datos.Artista)
 			if(datos.Artista){
 			datos.artistas.$add({
 				showId : "true",

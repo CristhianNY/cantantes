@@ -19,16 +19,16 @@
   <input type="search" placeholder="Search">
 </label>
      <a ui-sref="home.home" nav-clear class="item  ion-ios-location" ng-click="toggleLeft()">  {{pais}}-{{ciudad}}</a>
-     <a ui-sref="home.chat" nav-clear class="item  " ng-click="toggleLeft()">Artistas De Oro</a>
-     <a ui-sref="home.drink" nav-clear class="item" ng-click="toggleLeft()">Agrupaciones</a>
-     <a ui-sref="home.drink" nav-clear class="item" ng-click="toggleLeft()">Solistas</a>
-     <a ui-sref="home.drink" nav-clear class="item" ng-click="toggleLeft()">Conjunstos vallenatos</a>
-     <a ui-sref="home.drink" nav-clear class="item" ng-click="toggleLeft()">Mariachis</a>
-     <a ui-sref="home.drink" nav-clear class="item" ng-click="toggleLeft()">Cantantes de Reggaeton</a>
-     <a ui-sref="home.drink" nav-clear class="item" ng-click="toggleLeft()">Duetos - Trios - Cuartetos</a>
-     <a ui-sref="home.drink" nav-clear class="item" ng-click="toggleLeft()">Orquestas</a>
-     <a ui-sref="home.drink" nav-clear class="item" ng-click="toggleLeft()">papayeras</a> 
-     <a ui-sref="home.drink" nav-clear class="item" ng-click="toggleLeft()">Trobadores</a>    
+     <a ui-sref="app.mostrarbyid({categoria: 'artistasoro'})" nav-clear class="item  " ng-click="toggleLeft()">Artistas De Oro</a>
+     <a ui-sref="app.mostrarbyid({categoria: 'agrupacioneso'})" nav-clear class="item" ng-click="toggleLeft()">Agrupaciones</a>
+     <a ui-sref="app.mostrarbyid({categoria: 'solistas'})" nav-clear class="item" ng-click="toggleLeft()">Solistas</a>
+     <a ui-sref="app.mostrarbyid({categoria: 'vallenatos'})" nav-clear class="item" ng-click="toggleLeft()">Conjunstos vallenatos</a>
+     <a ui-sref="app.mostrarbyid({categoria: 'mariachis'})" nav-clear class="item" ng-click="toggleLeft()">Mariachis</a>
+     <a ui-sref="app.mostrarbyid({categoria: 'reggaeton'})" nav-clear class="item" ng-click="toggleLeft()">Cantantes de Reggaeton</a>
+     <a ui-sref="app.mostrarbyid({categoria: 'duetostrioscuartetos'})" nav-clear class="item" ng-click="toggleLeft()">Duetos - Trios - Cuartetos</a>
+     <a ui-sref="app.mostrarbyid({categoria: 'orquestas'})" nav-clear class="item" ng-click="toggleLeft()">Orquestas</a>
+     <a ui-sref="app.mostrarbyid({categoria: 'papayeras'})" nav-clear class="item" ng-click="toggleLeft()">papayeras</a> 
+     <a ui-sref="app.mostrarbyid({categoria: 'trovadores'})" nav-clear class="item" ng-click="toggleLeft()">Trovadores</a>    
     <a  nav-clear class="item" ng-click="showLogOutMenu()">Salir</a> 
         </ul>
       </ion-content>
