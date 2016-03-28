@@ -9,7 +9,7 @@ $scope.loggingIn = false;
 			$scope.loggingIn = true;
 			UserService.loginUser().then(function () {
 					$scope.loggingIn = false
-			    $state.go('app.mostrar');
+			    $state.go('pais.paises');
 		   });
 		}
 	}

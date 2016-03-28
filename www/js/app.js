@@ -37,25 +37,33 @@ app.config(function ($stateProvider, $urlRouterProvider){
       controller: 'loginfb',
       templateUrl: "templates/login.html"
     })
+     .state('pais', {
+      url: "/pa",
+      cache: false,
+      controller: 'loginfb',
+      templateUrl: "templates/paiseshead.html"
+    })
      .state('app', {
       url: "/app",
-      cache: true,
+      cache: false,
       controller: 'MenuCtrl',
       templateUrl: "templates/menu.html",
 
     })
       .state('app.home', {
                 url: '/home',
+                cache:false,
                 views: {
                     'home': {
                         templateUrl: 'templates/home.html',
                         controller : 'MenuCtrl'
                     }
                 }
-            }).state('app.paises', {
+            }).state('pais.paises', {
                 url: '/paises',
+                cache:false,
                 views: {
-                    'home': {
+                    'head': {
                         templateUrl: 'templates/paises.html',
                         controller : 'controlInicial'
                     }
@@ -63,6 +71,7 @@ app.config(function ($stateProvider, $urlRouterProvider){
             })
        .state('app.chat', {
                 url: '/chat',
+                cache:false,
                 views: {
                     'home': {
                         templateUrl: 'templates/tabs/tab-todo.html',
@@ -91,7 +100,7 @@ app.config(function ($stateProvider, $urlRouterProvider){
                 }
             })
          .state('app.mostrar', {
-           cache: true,
+           cache: false,
                 url: '/mostrar',
                 views: {
                     'home': {

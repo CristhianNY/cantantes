@@ -20,8 +20,8 @@ mod.controller('Ver', function ($scope, $rootScope, $state,db,Comentarios,$state
 
 
 
-var pais = "colombia";
-var ciudad = "medellin";
+var pais = $rootScope.pais;
+var ciudad = $rootScope.ciudad;
 var genero = categoria;
 
 
@@ -52,6 +52,8 @@ var genero = categoria;
        
         $rootScope.codigos = codigos;
          $rootScope.artistasR =grupos;
+
+         console.log("cristhian esto es "+$rootScope.artistasR+ $rootScope.codigos+"este es el grupo");
 
      });
           console.log(grupos);

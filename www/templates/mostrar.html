@@ -19,7 +19,14 @@
   <div>
 
 
+<div ng-repeat="art in artistasR" >
+<div ng-repeat="i in art"> 
+<div ng-if="i.$id == 'nombreArtista'">
+ <div ng-init="nombre=i.$value"> {{nombre}}</div>
+</div>
 
+</div>
+</div>
 
    <div class="card"  ng-repeat="art in artistasR">
 
@@ -29,11 +36,14 @@
       <ion-list>
 
 
-
   
 <div ng-repeat="i in art"> 
 
-{{i.$value}}
+{{nombre}}
+<div ng-if="i.$id == 'nombreArtista'">
+cristhian
+</div>
+
  <div ng-if="i.$id=='like'">
  <div ng-init="likes=i.$value"> {{likes}}</div>
     </div>

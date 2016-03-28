@@ -33,16 +33,18 @@ $rootScope.pais = pais;
 $rootScope.ciudad=  ciudad;
 
 
- db.list(pais,ciudad,genero).then(function(data){
+  db.list(pais,ciudad,genero).then(function(data){
 
   var grupos =[];
   var codigos =[];
   var datosParaVer ={};
   $ionicLoading.hide();
+ 
+
 
   data.forEach(function(childSnapshot) {
       
-         //console.log(childSnapshot);
+      
          var refw = new Firebase("https://cookie7.firebaseio.com/artistas/"+childSnapshot);
 
          dato = $firebaseArray(refw);
@@ -62,8 +64,11 @@ $rootScope.ciudad=  ciudad;
   //$rootScope.artistasR = data;
    //console.log(data);
    $state.go('app.mostrar');
+},function(error){
+
+  
+   $ionicLoading.hide();
 });
-      
 
 
   }

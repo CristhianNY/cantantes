@@ -35,7 +35,7 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
        $rootScope.imagendeperfil =imagenPerfil;
       $ionicLoading.hide();
      console.log("ir a mostrar");
-   $state.go('app.paises');
+   $state.go('pais.paises');
     }, function(fail){
       // Fail get profile info
       console.log('profile info fail', fail);
@@ -120,7 +120,7 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
 						});
             console.log("apunto de ir a app.mostrar aqui");
 
-					 $state.go('app.paises');
+					 $state.go('pais.paises');
 					}, function(fail){
 
         
@@ -156,7 +156,7 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
             });
             console.log("apunto de ir a app.mostrar aqui");
 
-           $state.go('app.paises');
+           $state.go('pais.paises');
           }, function(fail){
 
         
@@ -166,7 +166,7 @@ app.controller('loginfb', function($scope,$rootScope, $state, $q, UserService, $
 
           console.log("ir a mostrar despues de else");
     
-					 $state.go('app.paises');
+					 $state.go('pais.paises');
 				}
       } else {
 
