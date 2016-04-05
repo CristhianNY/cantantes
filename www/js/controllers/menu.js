@@ -57,6 +57,13 @@ mod.controller('MenuCtrl', function($scope,
 
 		 $scope.modal.show();
 	};
+
+	$scope.videos = function(video){
+
+$scope.vi = video;
+
+	$scope.modal1.show();
+	}
 		$scope.youtube = function () {
 		 $scope.modal1.show();
 	};

@@ -22,7 +22,7 @@
 <div ng-repeat="art in artistasR" >
 <div ng-repeat="i in art"> 
 <div ng-if="i.$id == 'nombreArtista'">
- <div ng-init="nombre=i.$value"> {{nombre}}</div>
+ <div class="item item-icon-left positive" ng-init="nombre=i.$value"> <i class="icon ion-music-note"></i> {{nombre}}</div>
 </div>
 
 </div>
@@ -39,14 +39,9 @@
   
 <div ng-repeat="i in art"> 
 
-{{nombre}}
 <div ng-if="i.$id == 'nombreArtista'">
-cristhian
-</div>
 
- <div ng-if="i.$id=='like'">
- <div ng-init="likes=i.$value"> {{likes}}</div>
-    </div>
+</div>
 
 
 <div> 
@@ -59,17 +54,61 @@ cristhian
  </ion-slide-box>
 
 
-
+</div>
 
 </div>
-  
+<div ng-repeat="i in art"> 
+<div class="card" ng-if="i.$id=='descripcion'" >
+  <div  class="item item-divider">
+ <div ng-init="descripcion=i.$value"> {{descripcion}}</div>
+    </div>
+</div>
+</div>
+<div ng-repeat="i in art"> 
 
+<div class="list" ng-if="i.$id=='telefono'" >
 
-
+  <div class="item item-button-right" ng-init="telefono=i.$value">
+    {{telefono}}
+ 
+ <a class="button button-positive" ng-href="tel: +{{telefono}}"> <i class="icon ion-ios-telephone"></i>
+</a>
+  </div>
 
 </div>
-  
+</div>
+<div ng-repeat="i in art"> 
 
+<div class="list" ng-if="i.$id=='whatsapp'" >
+
+  <div class="item item-button-right" ng-init="whatsapp=i.$value">
+    {{whatsapp}}
+ 
+ <a class="button button-balanced" ng-href="tel: +{{whatsapp}}"><i class="icon ion-social-whatsapp"></i>
+</a>
+  </div>
+
+</div>
+</div>
+
+<div ng-repeat="i in art"> 
+
+<div class="list" ng-if="i.$id=='video'" >
+<div class="card" >
+  <div class="item item-button-right" ng-init="video=i.$value">
+    Ver Video
+    <button class="button button-assertive" ng-click="videos(video); idYouTube(video)">
+      <i class="icon ion-social-youtube "></i>
+    </button>
+  </div>
+  </div>
+</div>
+
+</div>
+
+
+
+  
   
 
   </div>
@@ -86,7 +125,7 @@ cristhian
 <div ng-show="s.$id =='id'">
 
      <p>
- {{li}} aca esta 
+ 
       <a href="#" class="subdued">{{s.$value}} like</a>
       <a href="#" class="subdued" ng-click="comentarios('{{id}}')">Comments</a>
     </p>
