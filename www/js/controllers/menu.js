@@ -13,6 +13,7 @@ mod.controller('MenuCtrl', function($scope,
 									Likes,
 									Img,
 									$firebaseArray,
+									$ionicPopup,
 									$cordovaCamera,
 									$ionicSlideBoxDelegate) {
 
@@ -57,6 +58,30 @@ mod.controller('MenuCtrl', function($scope,
 
 		 $scope.modal.show();
 	};
+	$scope.doContactar = function (form) {
+
+
+			var NewMensaje = new Firebase("https://cookie7.firebaseio.com/mensajes");
+		
+
+		var addMensaje = $firebaseArray(NewMensaje);
+
+
+		  addMensaje.$add({
+		  	"nombre":$scope.formData.nombre,
+		  	"asunto":$scope.formData.asunto,
+		  	"email":$scope.formData.email,
+		  	"telefono":$scope.formData.tel,
+		  	"mensaje":$scope.formData.mensaje
+  		
+      }).then(function(){
+	 alert("por aca");
+      	
+		$scope.modal.hide();
+      });
+	
+	};
+
 
 	$scope.videos = function(video){
 
@@ -116,7 +141,7 @@ snapshot.forEach(function(like){
 if(like.key()=="like"){
 
 var likes = like.val();
-alert(Likes);
+
 
 
 
@@ -140,12 +165,15 @@ var art = idArtista+$rootScope.Usuario1;
 
 			
   			snapshot.forEach(function(childSnapshot) {
-  				alert("se metio");
+  				
 
   				 var key = childSnapshot.key();
 				 var usrLike = childSnapshot.val();
   				 if((key == "idUser")&&(usrLike == $rootScope.Usuario1)){
-     			alert("ya le diste like por aca ");
+     			$ionicPopup.alert({
+				title:'Ya te gusta este Artista',
+				subTitle:' :D '
+			});
      			$scope.leDiste = false;
      				return true;
      			}
@@ -180,7 +208,10 @@ var art = idArtista+$rootScope.Usuario1;
      			}else{
      				console.log($scope.leDiste);
 
-     				alert("ya le diste por aca tambien");
+     				$ionicPopup.alert({
+				title:'Ya te gusta este grupo',
+				subTitle:'Te encanta este grupo'
+			});
 
      			}
 

@@ -6,18 +6,26 @@
     </div>
   </ion-header-bar>
   <ion-content>
-    <form ng-submit="doContacto()">
+    <form name="formularioContacto" ng-submit="doContactar(formularioContacto)">
       <div class="list">
         <label class="item item-input">
+          <span class="input-label">Nombre</span>
+          <input type="text" ng-model="formData.nombre" name ="nombre">
+        </label>
+         <label class="item item-input">
+          <span class="input-label">Correo electronico</span>
+          <input type="text" ng-model="formData.email">
+        </label>
+        <label class="item item-input">
           <span class="input-label">Asunto</span>
-          <input type="text" ng-model="loginData.username">
+          <input type="text" ng-model="formData.asunto">
         </label>
           <label class="item item-input">
           <span class="input-label">Telefono</span>
-          <input type="text" ng-model="loginData.username">
+          <input type="text" ng-model="formData.tel">
         </label>
          <label class="item item-input">
-    <textarea placeholder="Mensaje"></textarea>
+    <textarea placeholder="Mensaje"  ng-model="formData.mensaje" ></textarea>
   </label>
         <label class="item">
           <button class="button button-block button-positive" type="submit">Contactar</button>

@@ -51,6 +51,8 @@
 </div>
 
 </div>
+
+
 <div ng-repeat="i in art"> 
 <div class="card" ng-if="i.$id=='descripcion'" >
   <div  class="item item-divider">
@@ -84,6 +86,20 @@
 
 </div>
 </div>
+<div ng-repeat="i in art"> 
+
+<div class="list" ng-if="i.$id=='url'" >
+
+  <div class="item item-button-right" ng-init="url=i.$value">
+    {{url}}
+ 
+ <a class="button button-balanced" ng-href="http://{{url}}" onclick="window.open(this.href, '_system', 'location=yes'); return false;"><i class="icon ion-ios-world-outline"></i>
+</a>
+  </div>
+
+</div>
+</div>
+
 
 <div ng-repeat="i in art"> 
 
@@ -153,10 +169,10 @@
 
 
     <div class="tabs tabs-icon-only">
-        <a nav-clear class="tab-item disable-user-behavior active" title="Home" nav-clear ui-sref="app.home">
+        <a nav-clear class="tab-item disable-user-behavior active" title="Home" nav-clear ui-sref="app.mostrarbyid({categoria: 'artistasoro'})">
           <i class="icon ion-music-note"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
         </a>
-        <a nav-clear class="tab-item disable-user-behavior" title="Artistas gold" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.chat">
+        <a nav-clear class="tab-item disable-user-behavior" title="Artistas gold" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.mostrarbyid({categoria: 'artistasoro'})">
           <i class="icon ion-ribbon-b"></i><span class="tab-title ng-binding" ng-bind-html="title"></span>
         </a>
         <a nav-clear class="tab-item disable-user-behavior" title="Agregar" icon-on="ion-ios7-filing" icon-off="ion-ios7-filing-outline" ui-sref="app.nuevo">

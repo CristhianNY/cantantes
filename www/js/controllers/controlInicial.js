@@ -16,7 +16,6 @@ mod.controller('controlInicial', function ($scope,$rootScope,
     {Id: 4, Name: "Ibagué", Selected: false}
   ];
 
-
   
 
   $scope.cargarGrupos= function(form){

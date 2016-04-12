@@ -19,7 +19,11 @@ mod.controller('Show', function ($scope, $rootScope, $state,db,Comentarios,$stat
      //getting fooVal
     
 
+ $scope.readMore= function(){
 
+   $scope.mostrar == true;
+
+  }
 
 
  $scope.verPorId = function(id) {
